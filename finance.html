@@ -59,6 +59,9 @@
     tr:nth-child(even) { background: var(--table-stripe); }
     .highlight-cell { background: var(--table-highlight-bg); font-weight: 700; color: var(--table-highlight-text); }
     .callout { border-left: 5px solid var(--primary); background: var(--card-sub); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; font-weight: 600; }
+    .chart-card { background: var(--card-sub); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .chart-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; text-align: center; }
+    .chart-box { position: relative; height: 280px; width: 100%; }
   </style>
 </head>
 <body>
@@ -120,6 +123,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="chart-card" style="margin-top: 20px;">
+        <div class="chart-title">📊 初期投資（CAPEX 400万円）の構成比率</div>
+        <div class="chart-box" style="height: 250px;">
+          <canvas id="capexChart"></canvas>
+        </div>
       </div>
     </div>
 
@@ -246,12 +255,19 @@
           </tbody>
         </table>
       </div>
+      <div class="chart-card" style="margin-top: 20px;">
+        <div class="chart-title">📈 3シナリオ感度分析（売上・費用・営業利益）比較</div>
+        <div class="chart-box" style="height: 300px;">
+          <canvas id="sensitivityChart"></canvas>
+        </div>
+      </div>
       <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-sub);">
         ※無人運営のため固定費の大部分が家賃のみであり、稼働率が20%まで落ち込んだ悲観時でも月間約70万円の営業黒字を維持できる高い財務健全性を持ちます。
       </p>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
@@ -259,18 +275,104 @@
     const htmlElement = document.documentElement;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme');
+
+    let capexChartInstance = null;
+    let sensitivityChartInstance = null;
+
+    function getThemeColors() {
+      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+      return {
+        text: isDark ? '#f9fafb' : '#0f172a',
+        subText: isDark ? '#9ca3af' : '#475569',
+        grid: isDark ? '#374151' : '#e2e8f0'
+      };
+    }
+
+    function initCharts() {
+      const colors = getThemeColors();
+
+      const ctxCapex = document.getElementById('capexChart').getContext('2d');
+      capexChartInstance = new Chart(ctxCapex, {
+        type: 'doughnut',
+        data: {
+          labels: ['物件契約初期費用（150万円）', '内装・防音施工（110万円）', 'VR・PC機材費（100万円）', '運用インフラ費（40万円）'],
+          datasets: [{
+            data: [150, 110, 100, 40],
+            backgroundColor: ['#2563eb', '#06b6d4', '#8b5cf6', '#f59e0b'],
+            borderWidth: 2,
+            borderColor: htmlElement.getAttribute('data-theme') === 'dark' ? '#1f2937' : '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, boxWidth: 12, padding: 12 } },
+            tooltip: { callbacks: { label: (ctx) => ` ${ctx.label}: 構成比 ${(ctx.raw / 4).toFixed(1)}%` } }
+          }
+        }
+      });
+
+      const ctxSens = document.getElementById('sensitivityChart').getContext('2d');
+      sensitivityChartInstance = new Chart(ctxSens, {
+        type: 'bar',
+        data: {
+          labels: ['悲観（稼働率20%）', '標準（稼働率45%）', '楽観（稼働率65%）'],
+          datasets: [
+            { label: '月間総売上高（万円）', data: [134.4, 300.6, 434.2], backgroundColor: '#3b82f6' },
+            { label: '月間総費用（万円）', data: [64.5, 72.0, 78.0], backgroundColor: '#ef4444' },
+            { label: '月間営業利益（万円）', data: [69.9, 228.6, 356.2], backgroundColor: '#10b981' }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: colors.text }, grid: { color: colors.grid } },
+            y: { ticks: { color: colors.subText }, grid: { color: colors.grid }, title: { display: true, text: '金額（万円）', color: colors.subText } }
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, boxWidth: 12, padding: 12 } }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      if (!capexChartInstance || !sensitivityChartInstance) return;
+      const colors = getThemeColors();
+      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+
+      capexChartInstance.data.datasets[0].borderColor = isDark ? '#1f2937' : '#ffffff';
+      capexChartInstance.options.plugins.legend.labels.color = colors.text;
+      capexChartInstance.update();
+
+      sensitivityChartInstance.options.scales.x.ticks.color = colors.text;
+      sensitivityChartInstance.options.scales.x.grid.color = colors.grid;
+      sensitivityChartInstance.options.scales.y.ticks.color = colors.subText;
+      sensitivityChartInstance.options.scales.y.grid.color = colors.grid;
+      sensitivityChartInstance.options.scales.y.title.color = colors.subText;
+      sensitivityChartInstance.options.plugins.legend.labels.color = colors.text;
+      sensitivityChartInstance.update();
+    }
+
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) applyTheme('dark');
     else applyTheme('light');
+
     toggleBtn.addEventListener('click', () => {
       const current = htmlElement.getAttribute('data-theme');
       applyTheme(current === 'dark' ? 'light' : 'dark');
+      updateChartsTheme();
     });
+
     function applyTheme(theme) {
       htmlElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
       themeText.textContent = theme === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替';
     }
+
+    window.addEventListener('DOMContentLoaded', initCharts);
   </script>
 </body>
 </html>

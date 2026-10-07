@@ -358,6 +358,10 @@
       color: var(--text-main);
     }
 
+    .chart-card { background: var(--card-sub); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .chart-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; text-align: center; }
+    .chart-box { position: relative; height: 280px; width: 100%; }
+
     footer {
       text-align: center;
       padding: 24px;
@@ -563,6 +567,12 @@
           </tbody>
         </table>
       </div>
+      <div class="chart-card" style="margin-top: 20px;">
+        <div class="chart-title">📈 ロードマップ目標：拠点展開数と目標年商推移</div>
+        <div class="chart-box" style="height: 280px;">
+          <canvas id="roadmapChart"></canvas>
+        </div>
+      </div>
     </div>
 
     <!-- 8. 法的要件・安全衛生・リスク管理 -->
@@ -644,28 +654,106 @@
   </div>
 
   <!-- テーマ切り替えスクリプト -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const themeText = document.getElementById('theme-text');
     const htmlElement = document.documentElement;
-
-    // システム（OS）のダークモード設定を確認
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme');
 
-    // 初期テーマの適用
+    let roadmapChartInstance = null;
+
+    function getThemeColors() {
+      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+      return {
+        text: isDark ? '#f9fafb' : '#0f172a',
+        subText: isDark ? '#9ca3af' : '#475569',
+        grid: isDark ? '#374151' : '#e2e8f0'
+      };
+    }
+
+    function initCharts() {
+      const colors = getThemeColors();
+      const ctx = document.getElementById('roadmapChart').getContext('2d');
+      roadmapChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Phase 1（1〜6ヶ月）', 'Phase 2（7〜18ヶ月）', 'Phase 3（19〜36ヶ月）'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '展開拠点数（店舗）',
+              data: [1, 3, 15],
+              backgroundColor: '#38bdf8',
+              yAxisID: 'yLocations',
+              borderRadius: 6
+            },
+            {
+              type: 'line',
+              label: '想定年商（百万円）',
+              data: [36, 108, 150],
+              borderColor: '#2563eb',
+              backgroundColor: '#2563eb',
+              borderWidth: 3,
+              pointRadius: 6,
+              yAxisID: 'yRevenue'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: colors.text }, grid: { color: colors.grid } },
+            yLocations: {
+              type: 'linear',
+              position: 'left',
+              ticks: { color: colors.subText, stepSize: 3 },
+              grid: { color: colors.grid },
+              title: { display: true, text: '拠点数（店舗）', color: colors.subText }
+            },
+            yRevenue: {
+              type: 'linear',
+              position: 'right',
+              ticks: { color: colors.subText },
+              grid: { display: false },
+              title: { display: true, text: '年商（百万円）', color: colors.subText }
+            }
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { color: colors.text, boxWidth: 12, padding: 12 } }
+          }
+        }
+      });
+    }
+
+    function updateChartsTheme() {
+      if (!roadmapChartInstance) return;
+      const colors = getThemeColors();
+      roadmapChartInstance.options.scales.x.ticks.color = colors.text;
+      roadmapChartInstance.options.scales.x.grid.color = colors.grid;
+      roadmapChartInstance.options.scales.yLocations.ticks.color = colors.subText;
+      roadmapChartInstance.options.scales.yLocations.grid.color = colors.grid;
+      roadmapChartInstance.options.scales.yLocations.title.color = colors.subText;
+      roadmapChartInstance.options.scales.yRevenue.ticks.color = colors.subText;
+      roadmapChartInstance.options.scales.yRevenue.title.color = colors.subText;
+      roadmapChartInstance.options.plugins.legend.labels.color = colors.text;
+      roadmapChartInstance.update();
+    }
+
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       applyTheme('dark');
     } else {
       applyTheme('light');
     }
 
-    // クリックイベント
     toggleBtn.addEventListener('click', () => {
       const currentTheme = htmlElement.getAttribute('data-theme');
       const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
       applyTheme(targetTheme);
+      updateChartsTheme();
     });
 
     function applyTheme(theme) {
@@ -679,6 +767,8 @@
         themeText.textContent = 'ダークモードに切替';
       }
     }
+
+    window.addEventListener('DOMContentLoaded', initCharts);
   </script>
 
 </body>
