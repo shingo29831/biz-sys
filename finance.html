@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>財務試算・感度分析：VR特化型レンタルスペース事業</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-sub: #f1f5f9;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --border: #cbd5e1;
+      --primary: #2563eb;
+      --header-bg: #0f172a;
+      --header-text: #ffffff;
+      --header-sub: #cbd5e1;
+      --table-th: #f1f5f9;
+      --table-stripe: #f8fafc;
+      --table-highlight-bg: #f1f5f9;
+      --table-highlight-text: #0284c7;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    }
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-sub: #1f2937;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --border: #374151;
+      --primary: #60a5fa;
+      --header-bg: #1f2937;
+      --header-text: #f9fafb;
+      --header-sub: #9ca3af;
+      --table-th: #1f2937;
+      --table-stripe: #161e2e;
+      --table-highlight-bg: #1e293b;
+      --table-highlight-text: #38bdf8;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.25s ease, color 0.25s ease; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.75; background: var(--bg); color: var(--text-main); padding: 40px 20px; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .theme-switch-wrapper { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+    .theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-main); padding: 8px 16px; border-radius: 999px; cursor: pointer; font-size: 0.9rem; font-weight: 600; }
+    .global-nav { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    .nav-link { padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .nav-link:hover { border-color: var(--primary); color: var(--primary); }
+    .nav-link.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
+    header { background: var(--header-bg); color: var(--header-text); padding: 36px; border-radius: 16px; margin-bottom: 24px; border: 1px solid var(--border); }
+    h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; }
+    .section-card { background: var(--card-bg); border-radius: 14px; padding: 30px; margin-bottom: 24px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+    h2 { font-size: 1.3rem; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+    .table-container { overflow-x: auto; margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+    th, td { padding: 14px 16px; border: 1px solid var(--border); }
+    th { background: var(--table-th); font-weight: 700; }
+    tr:nth-child(even) { background: var(--table-stripe); }
+    .highlight-cell { background: var(--table-highlight-bg); font-weight: 700; color: var(--table-highlight-text); }
+    .callout { border-left: 5px solid var(--primary); background: var(--card-sub); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 18px 0; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="theme-switch-wrapper">
+      <button id="theme-toggle" class="theme-toggle-btn">
+        <span id="theme-icon">🌙</span> <span id="theme-text">ダークモードに切替</span>
+      </button>
+    </div>
+
+    <nav class="global-nav">
+      <a href="index.html" class="nav-link">1. 事業構想・概要</a>
+      <a href="market.html" class="nav-link">2. 市場調査・公式リンク集</a>
+      <a href="finance.html" class="nav-link active">3. 財務試算・感度分析</a>
+    </nav>
+
+    <header>
+      <h1>財務計画・収支シミュレーション</h1>
+      <p style="color: var(--header-sub);">初期投資400万円の精緻な内訳・月次損益・感度分析（3シナリオ）</p>
+    </header>
+
+    <div class="section-card">
+      <h2>1. 初期投資計画（CAPEX：合計 400万円）</h2>
+      <p>モデル店舗：秋葉原・新宿・池袋等の駅近物件（約45㎡ / 約14坪）、計3室（防音フルトラ室1室＋体験室2室）構成。</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>費目</th>
+              <th>内訳</th>
+              <th>金額（税抜）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>物件契約初期費用</strong></td>
+              <td>敷金・保証金（賃料30万円×3ヶ月）、礼金1ヶ月、仲介手数料、前家賃</td>
+              <td>150万円</td>
+            </tr>
+            <tr>
+              <td><strong>内装・防音施工</strong></td>
+              <td>壁・床防音クッションマット敷設、防音ドア、天井配線レール設置</td>
+              <td>110万円</td>
+            </tr>
+            <tr>
+              <td><strong>VR・PC機材費</strong></td>
+              <td>ハイエンドゲーミングPC 1台、Meta Quest 3×2台、ベースステーション、トラッカー</td>
+              <td>100万円</td>
+            </tr>
+            <tr>
+              <td><strong>運用インフラ費</strong></td>
+              <td>スマートロック×3、共用部防犯カメラ、法人10Gbps対応ネットワーク機器</td>
+              <td>40万円</td>
+            </tr>
+            <tr class="highlight-cell">
+              <td><strong>初期投資合計</strong></td>
+              <td>開業時必要資金（自己資金＋日本政策金融公庫 創業融資想定）</td>
+              <td><strong>400万円</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>2. 基準月次損益計算（標準シナリオ：稼働率45%）</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>計算根拠</th>
+              <th>月額金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ヘビー室売上（1室）</td>
+              <td>単価5,000円/時 × 10.8時間/日 × 30日</td>
+              <td>1,620,000円</td>
+            </tr>
+            <tr>
+              <td>ライト室売上（2室）</td>
+              <td>単価2,000円/時 × 10.8時間/日 × 2室 × 30日</td>
+              <td>1,296,000円</td>
+            </tr>
+            <tr>
+              <td>物販（フェイスカバー等）</td>
+              <td>利用者の40%が新規購入（単価500円）＋ドリンク粗利</td>
+              <td>90,000円</td>
+            </tr>
+            <tr class="highlight-cell">
+              <td><strong>【月間総売上高】</strong></td>
+              <td>稼働率45%（1日あたり10.8時間利用）</td>
+              <td><strong>3,006,000円</strong></td>
+            </tr>
+            <tr>
+              <td>家賃・共益費</td>
+              <td>固定費（坪単価 約2.1万円）</td>
+              <td>▲300,000円</td>
+            </tr>
+            <tr>
+              <td>光熱費・通信費</td>
+              <td>PC常時稼働電力、専有高速回線</td>
+              <td>▲95,000円</td>
+            </tr>
+            <tr>
+              <td>決済手数料</td>
+              <td>売上の4.5%（オンライン予約システム）</td>
+              <td>▲135,270円</td>
+            </tr>
+            <tr>
+              <td>清掃代行・消耗品</td>
+              <td>巡回清掃外注、アルコール・アメニティ</td>
+              <td>▲110,000円</td>
+            </tr>
+            <tr>
+              <td>機器保守積立・損保</td>
+              <td>HMD定期更新・施設賠償責任保険</td>
+              <td>▲80,000円</td>
+            </tr>
+            <tr class="highlight-cell">
+              <td><strong>【月間営業利益】</strong></td>
+              <td>営業利益率 <strong>約76.0%</strong></td>
+              <td><strong>2,285,730円</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <strong>損益分岐点（BEP）：</strong> 月間固定費は約72万円。全体稼働率 <strong>約10.8%</strong>（1日あたり約2.6時間の稼働）で採算ラインに到達。
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>3. 感度分析（悲観・標準・楽観の3シナリオ比較）</h2>
+      <p>景気変動や競合参入時のリスク耐性を検証する感度分析です。</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>指標</th>
+              <th>悲観シナリオ（稼働率20%）</th>
+              <th>標準シナリオ（稼働率45%）</th>
+              <th>楽観シナリオ（稼働率65%）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>想定背景</strong></td>
+              <td>集客不振、平日昼間ほぼ空室</td>
+              <td>想定通りの稼働推移</td>
+              <td>口コミ拡散、週末満席・深夜配信定着</td>
+            </tr>
+            <tr>
+              <td><strong>1日平均稼働時間</strong></td>
+              <td>4.8時間 / 室</td>
+              <td>10.8時間 / 室</td>
+              <td>15.6時間 / 室</td>
+            </tr>
+            <tr>
+              <td><strong>月間総売上高</strong></td>
+              <td>1,344,000円</td>
+              <td>3,006,000円</td>
+              <td>4,342,000円</td>
+            </tr>
+            <tr>
+              <td><strong>月間総費用</strong></td>
+              <td>645,480円</td>
+              <td>720,270円</td>
+              <td>780,390円</td>
+            </tr>
+            <tr class="highlight-cell">
+              <td><strong>月間営業利益</strong></td>
+              <td><strong>+698,520円</strong></td>
+              <td><strong>+2,285,730円</strong></td>
+              <td><strong>+3,561,610円</strong></td>
+            </tr>
+            <tr>
+              <td><strong>投資回収期間</strong></td>
+              <td>約 5.7ヶ月</td>
+              <td>約 1.8ヶ月</td>
+              <td>約 1.1ヶ月</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 12px; font-size: 0.9rem; color: var(--text-sub);">
+        ※無人運営のため固定費の大部分が家賃のみであり、稼働率が20%まで落ち込んだ悲観時でも月間約70万円の営業黒字を維持できる高い財務健全性を持ちます。
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const htmlElement = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) applyTheme('dark');
+    else applyTheme('light');
+    toggleBtn.addEventListener('click', () => {
+      const current = htmlElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+    function applyTheme(theme) {
+      htmlElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeText.textContent = theme === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替';
+    }
+  </script>
+</body>
+</html>
