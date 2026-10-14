@@ -3,399 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新規事業企画書：VR特化型レンタルスペース事業</title>
-  <style>
-    /* ----------------------------------
-       CSS変数（テーマカラー定義）
-    ----------------------------------- */
-    :root {
-      /* ライトテーマ（デフォルト） */
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --card-sub: #f1f5f9;
-      --text-main: #0f172a;       /* 濃い黒で視認性を確保 */
-      --text-sub: #475569;        /* 落ち着いたグレー */
-      --border: #cbd5e1;
-      --primary: #2563eb;         /* アクセントのブルー */
-      --callout-bg: #f8fafc;      /* 背景を青にせず白寄りに変更 */
-      --callout-border: #2563eb;
-      --header-bg: #0f172a;       /* ヘッダーは濃紺/黒にして白文字を際立たせる */
-      --header-text: #ffffff;
-      --header-sub: #cbd5e1;
-      --badge-bg: #1e293b;
-      --badge-border: #475569;
-      --badge-text: #38bdf8;
-      --table-th: #f1f5f9;
-      --table-stripe: #f8fafc;
-      --table-highlight-bg: #f1f5f9;
-      --table-highlight-text: #0284c7;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    /* ダークテーマ用カラー */
-    [data-theme="dark"] {
-      --bg: #0b0f19;
-      --card-bg: #111827;
-      --card-sub: #1f2937;
-      --text-main: #f9fafb;       /* 明るい白 */
-      --text-sub: #9ca3af;
-      --border: #374151;
-      --primary: #60a5fa;
-      --callout-bg: #1f2937;
-      --callout-border: #60a5fa;
-      --header-bg: #1f2937;
-      --header-text: #f9fafb;
-      --header-sub: #9ca3af;
-      --badge-bg: #111827;
-      --badge-border: #4b5563;
-      --badge-text: #38bdf8;
-      --table-th: #1f2937;
-      --table-stripe: #161e2e;
-      --table-highlight-bg: #1e293b;
-      --table-highlight-text: #38bdf8;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-    }
-
-    /* ----------------------------------
-       基本リセット & レイアウト
-    ----------------------------------- */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      line-height: 1.75;
-      background-color: var(--bg);
-      color: var(--text-main);
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    /* テーマ切り替えボタン */
-    .theme-switch-wrapper {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 16px;
-    }
-
-    .theme-toggle-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 8px 16px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    .theme-toggle-btn:hover {
-      border-color: var(--primary);
-    }
-
-    /* ヘッダー */
-    header {
-      background-color: var(--header-bg);
-      color: var(--header-text);
-      padding: 36px;
-      border-radius: 16px;
-      margin-bottom: 24px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .badge {
-      display: inline-block;
-      background-color: var(--badge-bg);
-      border: 1px solid var(--badge-border);
-      color: var(--badge-text);
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-
-    h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: var(--header-sub);
-    }
-
-    /* セクションカード */
-    .section-card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 30px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    h2 {
-      font-size: 1.3rem;
-      color: var(--text-main);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      margin: 22px 0 10px;
-      color: var(--text-main);
-    }
-
-    p {
-      margin-bottom: 12px;
-      color: var(--text-main);
-    }
-
-    /* 強調ボックス（コントラスト改善） */
-    .callout {
-      background-color: var(--callout-bg);
-      border: 1px solid var(--border);
-      border-left: 5px solid var(--callout-border);
-      color: var(--text-main);
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      margin: 18px 0;
-      font-weight: 600;
-    }
-
-    /* プランボックス（2カラム） */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 16px;
-    }
-
-    .plan-box {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-      background: var(--card-sub);
-    }
-
-    .plan-box.light {
-      border-top: 4px solid #38bdf8;
-    }
-
-    .plan-box.heavy {
-      border-top: 4px solid #818cf8;
-    }
-
-    .plan-box h4 {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: var(--text-main);
-    }
-
-    .plan-box ul {
-      list-style-type: none;
-      margin-top: 12px;
-    }
-
-    .plan-box li {
-      padding: 6px 0;
-      border-bottom: 1px dashed var(--border);
-      font-size: 0.95rem;
-      color: var(--text-main);
-    }
-
-    .plan-box li:last-child {
-      border-bottom: none;
-    }
-
-    /* テーブル */
-    .table-container {
-      overflow-x: auto;
-      margin-top: 16px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.95rem;
-    }
-
-    th, td {
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      color: var(--text-main);
-    }
-
-    th {
-      background-color: var(--table-th);
-      font-weight: 700;
-    }
-
-    tr:nth-child(even) {
-      background-color: var(--table-stripe);
-    }
-
-    .highlight-cell {
-      background-color: var(--table-highlight-bg);
-      font-weight: 700;
-      color: var(--table-highlight-text);
-    }
-
-    /* ナビゲーションバー */
-    .global-nav {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .nav-link {
-      padding: 10px 20px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      background: var(--card-bg);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .nav-link:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    .nav-link.active {
-      background: var(--primary);
-      color: #ffffff;
-      border-color: var(--primary);
-    }
-
-    /* ページリンクバナー */
-    .page-link-card {
-      background: var(--card-sub);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 16px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-decoration: none;
-      color: var(--text-main);
-    }
-
-    .page-link-card:hover {
-      border-color: var(--primary);
-    }
-
-    /* 統計カード */
-    .stat-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .stat-card {
-      background: var(--card-sub);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .stat-source {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      font-weight: 600;
-    }
-
-    .stat-number {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin: 8px 0;
-    }
-
-    .stat-card p {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-    }
-
-    /* リスト */
-    .feature-list {
-      padding-left: 20px;
-      margin-bottom: 16px;
-    }
-
-    .feature-list li {
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-
-    .chart-card { background: var(--card-sub); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-    .chart-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; text-align: center; }
-    .chart-box { position: relative; height: 280px; width: 100%; }
-
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: var(--text-sub);
-      font-size: 0.85rem;
-    }
-  </style>
+  <title>1. 事業構想・概要：VR特化型レンタルスペース事業「V-Room」</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="container">
-    <!-- テーマ切り替えボタン -->
     <div class="theme-switch-wrapper">
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切替">
         <span id="theme-icon">🌙</span>
         <span id="theme-text">ダークモードに切替</span>
       </button>
+      <button onclick="window.print()" class="theme-toggle-btn">🖨️ A4印刷 / PDF保存</button>
     </div>
 
-    <!-- グローバルナビゲーション -->
     <nav class="global-nav">
       <a href="index.html" class="nav-link active">1. 事業構想・概要</a>
-      <a href="market.html" class="nav-link">2. 市場調査・公式リンク集</a>
-      <a href="finance.html" class="nav-link">3. 財務試算・感度分析</a>
+      <a href="spec.html" class="nav-link">2. 詳細仕様・BPC審査要約</a>
+      <a href="market.html" class="nav-link">3. 市場調査・公式リンク集</a>
+      <a href="finance.html" class="nav-link">4. 財務試算・感度分析</a>
     </nav>
 
-    <!-- ヘッダー -->
     <header>
       <span class="badge">ビジネスプロデュースコンペティション企画書</span>
       <h1>VR特化型レンタルスペース事業「V-Room」</h1>
       <p class="subtitle">〜 日本の住環境課題と衛生不安を解消する、次世代ルームスケール空間 〜</p>
     </header>
 
-    <!-- 1. 新規性・独自性 -->
     <div class="section-card">
       <h2>1. 新規性・独自性の定義</h2>
       <div class="callout">
@@ -409,7 +42,6 @@
       </p>
     </div>
 
-    <!-- 2. 類似サービスとの違い -->
     <div class="section-card">
       <h2>2. 類似サービスとの差別化（比較表）</h2>
       <p>既存サービスが抱えるボトルネックと本サービスの強みを比較します。</p>
@@ -453,20 +85,18 @@
       </div>
     </div>
 
-    <!-- 3. ターゲット層 & プラン設計 -->
     <div class="section-card">
-      <h2>3. ターゲット層と提供プラン</h2>
-      <p>客層の異なる「ライト層」と「ヘビー層」を、部屋の仕様・広さを分けて両方獲得します。</p>
-      
+      <h2>3. ターゲット層と提供プラン概要</h2>
+      <p>客層の異なる「ライト層」と「ヘビー層」を、部屋の仕様・広さを分けて両方獲得します（※ハードウェア・空間の詳細スペックやスキーム図は「2. 詳細仕様・BPC審査要約」ページに掲載）。</p>
       <div class="grid-2">
         <div class="plan-box light">
           <h4>① ライト層向けプラン（体験・お試し）</h4>
           <p><strong>対象：</strong>VR未経験者、購入検討者、友達同士</p>
           <ul>
-            <li><strong>広さ：</strong>3〜4畳（コンパクト）</li>
-            <li><strong>機材：</strong>Meta Questなどのスタンドアロン型（PC不要）</li>
+            <li><strong>広さ：</strong>3〜4畳（コンパクト・2室設置）</li>
+            <li><strong>機材：</strong>Meta Quest 3等のスタンドアロン型（PC不要）</li>
             <li><strong>特徴：</strong>手ぶらで利用可能、初心者向けガイド、衛生パーツ付き</li>
-            <li><strong>想定価格：</strong>1,500円〜2,500円 / 1時間</li>
+            <li><strong>想定価格：</strong>1,500円〜2,500円 / 1時間（標準2,000円）</li>
           </ul>
         </div>
 
@@ -474,23 +104,21 @@
           <h4>② ヘビー層向けプラン（フルトラ・活動）</h4>
           <p><strong>対象：</strong>VRChat住民、VRダンサー、VTuber撮影</p>
           <ul>
-            <li><strong>広さ：</strong>6〜10畳以上（広々防音空間）</li>
+            <li><strong>広さ：</strong>6〜10畳以上（広々防音空間・1室設置）</li>
             <li><strong>機材：</strong>ゲーミングPC、ベースステーション常設、トラッカー</li>
-            <li><strong>特徴：</strong>セッティング不要、防音（深夜・大声通話OK）、高速回線</li>
-            <li><strong>想定価格：</strong>4,000円〜6,000円 / 1時間</li>
+            <li><strong>特徴：</strong>セッティング不要、防音（深夜・大声通話OK）、10G高速回線</li>
+            <li><strong>想定価格：</strong>4,000円〜6,000円 / 1時間（標準5,000円）</li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- 4. なぜ売れるのか？一番の特徴 -->
     <div class="section-card">
       <h2>4. なぜ売れるのか？ & 一番の特徴</h2>
       <h3>売れる理由：日本の住環境とのギャップ解決</h3>
       <p>
         VRは「何もない広い空間」を要求しますが、日本の住宅事情（特に単身世帯）では家具を避けて2m×2m以上の空間を確保するのが困難です。また、「同居人や隣人への騒音配慮」「高額機材の初期費用（30〜40万円）」という三重苦を、時間貸しによって解消します。
       </p>
-
       <h3>一番の特徴（コア・バリュー）</h3>
       <div class="callout">
         『完全な安全・清潔が保証された、機材常設型のプラグ＆プレイVR空間』
@@ -500,10 +128,8 @@
       </p>
     </div>
 
-    <!-- 5. 利益性（ビジネスモデル） -->
     <div class="section-card">
       <h2>5. 収益性・ビジネスモデル</h2>
-      <p>複数の収益源と、省人化による低コスト運営で高営業利益率を確保します。</p>
       <ul class="feature-list">
         <li><strong>売上の複層化（高粗利モデル）：</strong>「空間時間貸し料金」を基本軸に、高粗利な「衛生フェイスカバー買い切り（原価率約20%）」「フルトラッカー・配信機材追加レンタル」「自動販売機・ドリンク販売」をアップセル。</li>
         <li><strong>タイムシェアの最適化（24時間稼働）：</strong>平日昼間＝ライト層・学生・購入前検証、平日夜間〜深夜・休日＝ヘビー層（VRChat定例集会、音楽イベント、ダンス配信）により遊休時間を極小化。</li>
@@ -511,74 +137,63 @@
       </ul>
     </div>
 
-    <!-- 6. 詳細ページへの誘導 -->
     <div class="section-card">
-      <h2>6. 詳細調査・財務試算データ</h2>
-      <p>審査基準に直結する公的統計エビデンスおよび感度分析シミュレーションは別ページで網羅しています。</p>
-      <a href="market.html" class="page-link-card">
-        <div>
-          <strong>📊 市場調査・公的データリンク集を見る</strong>
-          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">矢野経済研究所・総務省・SteamVRの統計とWebリンク一覧</p>
-        </div>
-        <span style="font-size: 1.2rem;">→</span>
-      </a>
-      <a href="finance.html" class="page-link-card">
-        <div>
-          <strong>💰 財務計画・感度分析シミュレーションを見る</strong>
-          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">初期投資400万円内訳、月次PL、悲観/楽観3シナリオ試算</p>
-        </div>
-        <span style="font-size: 1.2rem;">→</span>
-      </a>
-    </div>
-
-    <!-- 7. 事業展開ロードマップ -->
-    <div class="section-card">
-      <h2>7. 事業展開ロードマップ（マイルストーン）</h2>
-      <p>3年間の実行計画と段階的スケーリング構想です。</p>
+      <h2>6. 事業展開ロードマップ（短期〜5年後・10年後の長期展望）</h2>
+      <p>開業後3年間の実行計画および、5年後・10年後の長期数値目標と市場拡大構想です。</p>
       <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>フェーズ</th>
               <th>期間</th>
-              <th>主目標・アクション</th>
-              <th>重要業績評価指標（KPI）</th>
+              <th>主目標・実現方法・市場拡大の根拠</th>
+              <th>重要業績評価指標（数値目標）</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>Phase 1: 実証（PoC）</strong></td>
               <td>1〜6ヶ月目</td>
-              <td>秋葉原に直営1号店（3室）を開設。無人運用システム・クッション耐久性の検証。</td>
-              <td>月間稼働率 45%、リピート率 30%</td>
+              <td>秋葉原に直営1号店（3室）を開設。無人運用システム・クッション耐久性の検証。初期投資400万円を標準約1.8ヶ月で回収。</td>
+              <td>1拠点、月間稼働率 45%<br>年商換算 3,607万円</td>
             </tr>
             <tr>
               <td><strong>Phase 2: ドミナント展開</strong></td>
               <td>7〜18ヶ月目</td>
-              <td>新宿・池袋に2・3号店出店。法人提携（VTuberプロダクション・機材協賛）開始。</td>
-              <td>3店舗黒字化、会員数 1,500名</td>
+              <td>新宿・池袋に2・3号店出店。法人提携（VTuberプロダクション・機材協賛）および専門学校・大学サークル学割開始。</td>
+              <td>直営3拠点黒字化<br>会員1,500名、年商 1.08億円</td>
             </tr>
             <tr>
               <td><strong>Phase 3: FC化・全国展開</strong></td>
-              <td>19〜36ヶ月目</td>
-              <td>大阪・名古屋への無人FCパッケージ供給。遊休ビルオーナー向け転換プラン販売。</td>
-              <td>全国15拠点展開、年商 1.5億円</td>
+              <td>19〜36ヶ月目（3年目）</td>
+              <td>大阪・名古屋等の主要都市へ無人FCパッケージ供給。遊休ビル・空きテナントオーナー向け高収益転換プラン販売。</td>
+              <td>全国15拠点展開<br>グループ年商 1.5億円</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 4: 都市圏網羅</strong></td>
+              <td><strong>5年後目標</strong></td>
+              <td>国内メタバース市場1兆8,700億円規模（矢野経済研究所予測）への拡大を追い風に、全国の主要政令指定都市駅前へFC網を拡大。</td>
+              <td class="highlight-cell"><strong>全国50拠点（直営10・FC40）<br>グループ年商 6.0億円</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Phase 5: 社会インフラ化</strong></td>
+              <td><strong>10年後目標</strong></td>
+              <td>エンタメ用途に加え、企業のXR遠隔研修・接客訓練、自治体のメタバース教育・不登校支援拠点（BtoB/BtoG）として全国インフラ化。</td>
+              <td class="highlight-cell"><strong>全国150拠点展開<br>グループ年商 20.0億円</strong></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="chart-card" style="margin-top: 20px;">
-        <div class="chart-title">📈 ロードマップ目標：拠点展開数と目標年商推移</div>
-        <div class="chart-box" style="height: 280px;">
+        <div class="chart-title">📈 ロードマップ目標：拠点展開数と目標年商推移（〜10年後展望）</div>
+        <div class="chart-box">
           <canvas id="roadmapChart"></canvas>
         </div>
       </div>
     </div>
 
-    <!-- 8. 法的要件・安全衛生・リスク管理 -->
     <div class="section-card">
-      <h2>8. 法規制適合・リスク管理・衛生管理</h2>
-      <p>コンプライアンス遵守とトラブル予防を制度設計に組み込み、持続可能な運営を行います。</p>
+      <h2>7. 法規制適合・リスク管理・衛生管理</h2>
       <div class="table-container">
         <table>
           <thead>
@@ -614,38 +229,54 @@
       </div>
     </div>
 
-    <!-- 9. 集客戦略（Go-To-Market） -->
     <div class="section-card">
-      <h2>9. プロモーション・初期集客戦略</h2>
+      <h2>8. プロモーション・初期集客戦略 & 利用者の効果予測</h2>
       <ul class="feature-list">
-        <li><strong>VRChat内コミュニティ・インフルエンサー提携：</strong>メタバース内での有名クリエイターやVRダンサーに先行体験枠を提供。X（旧Twitter）およびYouTubeでの「手ぶらでフルトラ体験してみた」動画拡散。</li>
-        <li><strong>オフ会・VRイベント拠点化：</strong>バーチャルマーケット（Vket）期間や公式音楽ライブ開催時に、フレンド同士がリアルで隣の部屋に入り同時接続する「リアル併催パック」を展開。</li>
-        <li><strong>学生・アカデミック割引：</strong>情報系・デザイン系専門学校や大学サークルと提携し、平日昼間のアイドルタイムを卒制開発や研究用途向けに割安提供しベース稼働を確保。</li>
+        <li><strong>VRChat内コミュニティ・インフルエンサー提携：</strong>有名クリエイターやVRダンサーに先行体験枠を提供し、X（旧Twitter）およびYouTubeでの体験動画を拡散。</li>
+        <li><strong>オフ会・VRイベント拠点化：</strong>バーチャルマーケット（Vket）期間や音楽ライブ開催時に、フレンド同士が隣の部屋に入り同時接続する「リアル併催パック」を展開。</li>
+        <li><strong>学生・アカデミック割引：</strong>情報系・デザイン系専門学校や大学サークルと提携し、平日昼間のアイドルタイムを卒制開発や研究用途向けに割安提供。</li>
       </ul>
-    </div>
-
-    <!-- 10. 効果予測 -->
-    <div class="section-card">
-      <h2>10. 効果予測（利用者が得られるメリット）</h2>
       <div class="grid-2">
         <div class="plan-box">
           <h4>ライト層への効果</h4>
           <ul class="feature-list">
             <li><strong>高額買い物の失敗リスクゼロ：</strong>「買ったけど酔って遊べなかった」「部屋が狭くて使えなかった」という後悔を防止。</li>
-            <li><strong>衛生面の完全な安心：</strong>他人の汗を気にせず、フィットネス系や音ゲー（Beat Saber等）に全力投球できる。</li>
-            <li><strong>手ぶら体験の利便性：</strong>設定難易度の高いVR機器を、専門知識なしで1分で起動・体験可能。</li>
+            <li><strong>衛生面の完全な安心：</strong>他人の汗を気にせず、フィットネス系や音ゲーに全力投球できる。</li>
           </ul>
         </div>
-
         <div class="plan-box">
           <h4>ヘビー層への効果</h4>
           <ul class="feature-list">
             <li><strong>パフォーマンスの最大化：</strong>家具や壁に激突する恐怖から解放され、ダンスや全身アクションの可動域が100%発揮される。</li>
-            <li><strong>セッティングの手間解消：</strong>三脚の設置やベースステーション位置調整が不要。来訪後すぐにフルトラッキングを開始可能。</li>
-            <li><strong>騒音トラブルゼロ：</strong>防音室により、深夜帯でもメタバース内の友人と気兼ねなくボイスチャットができる。</li>
+            <li><strong>セッティング・騒音ゼロ：</strong>ベースステーション位置調整が不要で、深夜帯でも気兼ねなくボイスチャットが可能。</li>
           </ul>
         </div>
       </div>
+    </div>
+
+    <div class="section-card">
+      <h2>9. 各詳細ページへのショートカット</h2>
+      <a href="spec.html" class="page-link-card">
+        <div>
+          <strong>🛠️ 2. 詳細仕様・ビジネススキーム図・BPC審査要約を見る</strong>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">ルーム別ハードウェア仕様、無人運営スペック、リソースの流れ図、審査用紙（項目1〜8）早見表</p>
+        </div>
+        <span style="font-size: 1.2rem;">→</span>
+      </a>
+      <a href="market.html" class="page-link-card">
+        <div>
+          <strong>📊 3. 市場調査・公的データリンク集を見る</strong>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">矢野経済研究所・総務省・SteamVRの統計とWebリンク一覧</p>
+        </div>
+        <span style="font-size: 1.2rem;">→</span>
+      </a>
+      <a href="finance.html" class="page-link-card">
+        <div>
+          <strong>💰 4. 財務計画・感度分析シミュレーションを見る</strong>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">初期投資400万円内訳、月次PL、悲観/楽観3シナリオ試算</p>
+        </div>
+        <span style="font-size: 1.2rem;">→</span>
+      </a>
     </div>
 
     <footer>
@@ -653,7 +284,6 @@
     </footer>
   </div>
 
-  <!-- テーマ切り替えスクリプト -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
@@ -680,12 +310,12 @@
       roadmapChartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['Phase 1（1〜6ヶ月）', 'Phase 2（7〜18ヶ月）', 'Phase 3（19〜36ヶ月）'],
+          labels: ['Phase 1(6ヶ月)', 'Phase 2(18ヶ月)', 'Phase 3(3年目)', 'Phase 4(5年後)', 'Phase 5(10年後)'],
           datasets: [
             {
               type: 'bar',
               label: '展開拠点数（店舗）',
-              data: [1, 3, 15],
+              data: [1, 3, 15, 50, 150],
               backgroundColor: '#38bdf8',
               yAxisID: 'yLocations',
               borderRadius: 6
@@ -693,7 +323,7 @@
             {
               type: 'line',
               label: '想定年商（百万円）',
-              data: [36, 108, 150],
+              data: [36, 108, 150, 600, 2000],
               borderColor: '#2563eb',
               backgroundColor: '#2563eb',
               borderWidth: 3,
@@ -710,7 +340,7 @@
             yLocations: {
               type: 'linear',
               position: 'left',
-              ticks: { color: colors.subText, stepSize: 3 },
+              ticks: { color: colors.subText },
               grid: { color: colors.grid },
               title: { display: true, text: '拠点数（店舗）', color: colors.subText }
             },
@@ -743,33 +373,23 @@
       roadmapChartInstance.update();
     }
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      applyTheme('dark');
-    } else {
-      applyTheme('light');
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      const currentTheme = htmlElement.getAttribute('data-theme');
-      const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(targetTheme);
-      updateChartsTheme();
-    });
-
     function applyTheme(theme) {
       htmlElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
-      if (theme === 'dark') {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'ライトモードに切替';
-      } else {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'ダークモードに切替';
-      }
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeText.textContent = theme === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替';
     }
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) applyTheme('dark');
+    else applyTheme('light');
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+      updateChartsTheme();
+    });
 
     window.addEventListener('DOMContentLoaded', initCharts);
   </script>
-
 </body>
 </html>

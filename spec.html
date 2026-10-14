@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2. 詳細仕様・BPC審査要約：VR特化型レンタルスペース事業「V-Room」</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="theme-switch-wrapper">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切替">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">ダークモードに切替</span>
+      </button>
+      <button onclick="window.print()" class="theme-toggle-btn">🖨️ A4印刷 / PDF保存</button>
+    </div>
+
+    <nav class="global-nav">
+      <a href="index.html" class="nav-link">1. 事業構想・概要</a>
+      <a href="spec.html" class="nav-link active">2. 詳細仕様・BPC審査要約</a>
+      <a href="market.html" class="nav-link">3. 市場調査・公式リンク集</a>
+      <a href="finance.html" class="nav-link">4. 財務試算・感度分析</a>
+    </nav>
+
+    <header>
+      <span class="badge">サービス仕様・審査用紙対応シート</span>
+      <h1>詳細仕様・ビジネススキーム・BPC審査要約</h1>
+      <p class="subtitle">ルーム別ハードウェア構成、無人運営インフラ、およびコンペ審査用紙（項目1〜8）の総括</p>
+    </header>
+
+    <!-- 1. ルーム別詳細仕様 -->
+    <div class="section-card">
+      <h2>1. ルーム別・ハードウェア＆空間仕様一覧表（1店舗計3室モデル）</h2>
+      <p>1店舗あたり約45㎡（約14坪）のテナントを、ライト室2室・ヘビー室1室の計3室に区画割りした標準仕様です。</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>仕様項目</th>
+              <th>ライト室（体験・お試し室）</th>
+              <th>ヘビー室（防音フルトラ専用室）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1店舗あたり設置室数</strong></td>
+              <td><strong>2室</strong></td>
+              <td class="highlight-cell"><strong>1室</strong></td>
+            </tr>
+            <tr>
+              <td><strong>専有広さ・空間設計</strong></td>
+              <td>3〜4畳（家具・障害物ゼロ空間）</td>
+              <td class="highlight-cell">6〜10畳以上（ルームスケール・全身可動対応）</td>
+            </tr>
+            <tr>
+              <td><strong>防音・安全内装仕様</strong></td>
+              <td>壁・床衝撃吸収クッションマット、視認ガラス窓付ドア</td>
+              <td class="highlight-cell">防音ドア、全面防音クッション壁・床、天井配線レール</td>
+            </tr>
+            <tr>
+              <td><strong>常設VRヘッドセット</strong></td>
+              <td>Meta Quest 3（スタンドアロン型 × 各室1台・計2台）</td>
+              <td class="highlight-cell">PC接続対応HMD ＋ 紫外線（UV-C）除菌保管庫</td>
+            </tr>
+            <tr>
+              <td><strong>PC・トラッキング機材</strong></td>
+              <td>PC不要（単体動作・1分クイック起動ガイド付）</td>
+              <td class="highlight-cell">ハイエンドゲーミングPC、天井ベースステーション常設、フルトラッカー一式</td>
+            </tr>
+            <tr>
+              <td><strong>ネットワーク仕様</strong></td>
+              <td>法人向け高速Wi-Fi 6E専有アクセスポイント</td>
+              <td class="highlight-cell">法人10Gbps専有光回線（有線LAN・低遅延配信対応）</td>
+            </tr>
+            <tr>
+              <td><strong>時間貸し料金（試算基準）</strong></td>
+              <td>1,500円〜2,500円/時（標準単価：<strong>2,000円/時</strong>）</td>
+              <td class="highlight-cell">4,000円〜6,000円/時（標準単価：<strong>5,000円/時</strong>）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. 店舗・無人運営・衛生管理仕様 -->
+    <div class="section-card">
+      <h2>2. 店舗インフラ・無人オペレーション・衛生管理仕様</h2>
+      <div class="grid-3">
+        <div class="spec-card">
+          <h4>🏢 モデル店舗・物件仕様</h4>
+          <ul class="feature-list">
+            <li><span class="spec-badge">立地</span>秋葉原・新宿・池袋等の駅近ビル</li>
+            <li><span class="spec-badge">面積</span>約45㎡（約14坪）/ 3室＋共用部</li>
+            <li><span class="spec-badge">初期投資</span>計400万円（物件150万・内装110万・機材100万・運用40万）</li>
+          </ul>
+        </div>
+        <div class="spec-card">
+          <h4>🔐 24h無人スマート運営仕様</h4>
+          <ul class="feature-list">
+            <li><span class="spec-badge">入退室</span>予約連動スマートロック×3室（ワンタイムPIN解錠）</li>
+            <li><span class="spec-badge">決済</span>Web事前オンライン決済（手数料4.5%）</li>
+            <li><span class="spec-badge">防犯</span>共用部遠隔防犯カメラ・人件費ゼロ運営</li>
+          </ul>
+        </div>
+        <div class="spec-card">
+          <h4>✨ 衛生・保守メンテナンス仕様</h4>
+          <ul class="feature-list">
+            <li><span class="spec-badge">物販</span>肌接触シリコンカバー買い切り販売（500円/個・原価率約20%）</li>
+            <li><span class="spec-badge">除菌</span>退室ごとのUV-C除菌庫自動殺菌＋巡回清掃外注（月11万円）</li>
+            <li><span class="spec-badge">保険</span>機器保守積立＆施設賠償責任保険（月8万円）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. ビジネススキーム図 -->
+    <div class="section-card">
+      <h2>3. ビジネススキーム図（ビジネスに関わるリソースの流れ）</h2>
+      <p>物件オーナー、機材サプライヤー、清掃・決済パートナー、および利用者（ライト層・ヘビー層）との間の「ヒト・モノ・カネ・情報」の流れです。</p>
+      <div class="scheme-wrapper">
+        <div class="scheme-row">
+          <div class="scheme-box">
+            <strong>🏢 物件オーナー・通信キャリア</strong><br>
+            駅近ビル（約14坪）・10Gbps回線提供<br>
+            <small style="color:var(--primary);">◀ 家賃30万円/月・光熱通信9.5万円/月</small>
+          </div>
+          <div class="scheme-box">
+            <strong>🥽 機材・衛生パーツサプライヤー</strong><br>
+            PC・Quest 3・センサー・シリコンカバー納入<br>
+            <small style="color:var(--primary);">◀ 初期機材100万円・保守積立8万円/月</small>
+          </div>
+          <div class="scheme-box">
+            <strong>🧹 清掃代行・オンライン決済基盤</strong><br>
+            定期巡回清掃・アメニティ補充・決済処理<br>
+            <small style="color:var(--primary);">◀ 清掃外注11万円/月・決済手数料4.5%</small>
+          </div>
+        </div>
+        <div class="scheme-arrow">▲ 固定費・業務委託費の支払い ｜ ▼ 空間・高速回線・機材・清潔環境の供給</div>
+        <div class="scheme-box core">
+          <strong>🚀 当事業：VR特化型レンタルスペース「V-Room」（24時間無人スマート運営）</strong><br>
+          防音クッション個室（ヘビー1室＋ライト2室）× 常設プラグ＆プレイ機材 × 買い切り衛生カバー販売
+        </div>
+        <div class="scheme-arrow">▼ 安全・清潔なVR空間と機材の提供 ｜ ▲ 時間貸し利用料・物販代金の支払い（標準月商 300.6万円）</div>
+        <div class="scheme-row">
+          <div class="scheme-box">
+            <strong>🧑‍🎓 ライト層（平日昼〜夕方メイン）</strong><br>
+            VR未経験者・購入前検証・学生グループ<br>
+            <strong>利用料 2,000円/時 ＋ 衛生カバー 500円</strong>
+          </div>
+          <div class="scheme-box">
+            <strong>💃 ヘビー層（夜間・深夜・休日メイン）</strong><br>
+            VRChat住民・VRダンサー・VTuber配信者<br>
+            <strong>利用料 5,000円/時 ＋ 衛生カバー 500円</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BPC審査用紙（項目1〜8）対応一覧表 -->
+    <div class="section-card">
+      <h2>4. BPC審査用紙（項目1〜8）対応サマリー早見表</h2>
+      <p>第23回ビジネスプロデュースコンペティション審査用紙の各設問に対する要点一覧です。</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 24%;">審査用紙項目</th>
+              <th>本プランの記載要点・仕様まとめ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>１．ビジネスプラン名</strong><br><small>（10字程度）</small></td>
+              <td class="highlight-cell"><strong>防音VR個室V-Room</strong>（10文字）</td>
+            </tr>
+            <tr>
+              <td><strong>２．ビジネスプランのテーマ</strong></td>
+              <td>日本の狭小な住環境課題と衛生不安を解消する、機材常設・完全防音のVR特化型・無人時間貸しレンタルスペース事業</td>
+            </tr>
+            <tr>
+              <td><strong>３．ビジネスアイデアの元</strong></td>
+              <td>VRChat日本アクセス世界1位（37%）の熱量に対し、首都圏単身住宅（平均20.3㎡）では2m四方の空間確保・防音・機材初期費用（30〜40万円）のハードルが高い課題に着目。「場所貸し×機材常設×衛生パーツ買い切り」の新結合で解決。</td>
+            </tr>
+            <tr>
+              <td><strong>４．プラン内容とスキーム</strong></td>
+              <td><strong>①誰に：</strong>VR未経験のライト層＆自宅が狭いヘビー層（VRChat・ダンサー・VTuber）<br><strong>②何を：</strong>Quest 3常設のライト室（2室・2,000円/時）と、防音・ハイエンドPC・フルトラ常設のヘビー室（1室・5,000円/時）＋買い切りシリコンカバー（500円）<br><strong>③どのように：</strong>スマートロックとWeb事前決済による24時間無人運営（上記セクション3のスキーム図参照）</td>
+            </tr>
+            <tr>
+              <td><strong>５．特徴・独自性・市場性</strong></td>
+              <td><strong>独自性：</strong>クッション壁による安全性、1分起動のプラグ＆プレイ、買い切りカバー＋UV-C除菌による完全衛生管理。<br><strong>市場性：</strong>国内メタバース市場は2024年度見込2,750億円から2028年度予測1兆8,700億円（約6.8倍）へ急成長（矢野経済研究所）。</td>
+            </tr>
+            <tr>
+              <td><strong>６．将来の計画・展望</strong></td>
+              <td><strong>1〜3年目：</strong>直営1号店（月商300.6万円・回収1.8ヶ月）から3年目全国15拠点（年商1.5億円）へFC展開。<br><strong>5年後：</strong>全国50拠点・年商6億円 ／ <strong>10年後：</strong>全国150拠点・年商20億円（企業XR研修や自治体メタバース教育拠点へ拡張）。</td>
+            </tr>
+            <tr>
+              <td><strong>７．その他（伝えたいこと）</strong></td>
+              <td><strong>法規制適合と超低リスク体質：</strong>風営法・旅館業法・消防法に事前適合する内装・運用設計。無人運営により損益分岐点稼働率はわずか<strong>10.8%（1日約2.6時間）</strong>であり、稼働率20%の悲観時でも月約70万円の営業黒字を維持可能。</td>
+            </tr>
+            <tr>
+              <td><strong>８．事業試算表（1店舗基準）</strong></td>
+              <td><strong>初期投資：</strong>400万円 ／ <strong>月商（稼働45%）：</strong>300.6万円 ／ <strong>月間経費：</strong>72.0万円 ／ <strong>月間営業利益：</strong>228.5万円（営業利益率76.0%・詳細は <a href="finance.html" class="external-link">4. 財務試算ページ</a> 参照）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 新規ビジネス企画課題提出用資料</p>
+    </footer>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const htmlElement = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    function applyTheme(theme) {
+      htmlElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeText.textContent = theme === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替';
+    }
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) applyTheme('dark');
+    else applyTheme('light');
+
+    toggleBtn.addEventListener('click', () => {
+      const current = htmlElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>

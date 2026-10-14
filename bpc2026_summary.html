@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第23回ビジネスプロデュースコンペティション 審査資料：防音VR個室V-Room</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-sub: #f1f5f9;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --border: #cbd5e1;
+      --primary: #2563eb;
+      --accent: #0284c7;
+      --header-bg: #0f172a;
+      --header-text: #ffffff;
+      --table-th: #f1f5f9;
+      --table-stripe: #f8fafc;
+      --highlight-bg: #e0f2fe;
+      --highlight-text: #0369a1;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    }
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-sub: #1f2937;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --border: #374151;
+      --primary: #60a5fa;
+      --accent: #38bdf8;
+      --header-bg: #1f2937;
+      --header-text: #f9fafb;
+      --table-th: #1f2937;
+      --table-stripe: #161e2e;
+      --highlight-bg: #1e293b;
+      --highlight-text: #38bdf8;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 32px 16px;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+    .toolbar { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 16px; }
+    .btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover { border-color: var(--primary); color: var(--primary); }
+    header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 32px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 6px; }
+    .section-card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      page-break-inside: avoid;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3 { font-size: 1.05rem; margin: 18px 0 8px; color: var(--accent); }
+    p { margin-bottom: 10px; }
+    .callout {
+      border-left: 5px solid var(--primary);
+      background: var(--card-sub);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-weight: 600;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin-top: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 12px; }
+    .box {
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .stat-num { font-size: 1.6rem; font-weight: 800; color: var(--primary); margin: 4px 0; }
+    /* ビジネススキーム図 */
+    .scheme-diagram {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      background: var(--card-sub);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 14px;
+    }
+    .scheme-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .scheme-node {
+      flex: 1;
+      min-width: 200px;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .scheme-node.center-node {
+      border-color: var(--primary);
+      background: var(--highlight-bg);
+    }
+    .scheme-arrow {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+      padding: 4px 0;
+    }
+    .table-container { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    th, td { padding: 11px 14px; border: 1px solid var(--border); text-align: left; }
+    th { background: var(--table-th); font-weight: 700; }
+    tr:nth-child(even) { background: var(--table-stripe); }
+    .highlight-row { background: var(--highlight-bg) !important; font-weight: 700; color: var(--highlight-text); }
+    ul { padding-left: 20px; margin-bottom: 10px; }
+    li { margin-bottom: 6px; }
+    .external-link { color: var(--primary); font-weight: 600; text-decoration: underline; word-break: break-all; }
+    .chart-box { position: relative; height: 250px; width: 100%; margin-top: 14px; }
+    @media print {
+      body { background: #ffffff; color: #000000; padding: 0; }
+      .toolbar { display: none; }
+      .section-card { box-shadow: none; border: 1px solid #94a3b8; margin-bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="toolbar">
+      <button id="theme-toggle" class="btn">🌙 ダークモード切替</button>
+      <button onclick="window.print()" class="btn">🖨️ A4印刷 / PDF保存</button>
+    </div>
+
+    <header>
+      <span class="badge">第23回 ビジネスプロデュース コンペティション 審査用紙統合資料</span>
+      <h1>１．ビジネスプラン名：防音VR個室V-Room</h1>
+      <p><strong>２．ビジネスプランのテーマ：</strong>日本の狭小な住環境課題と衛生不安を解消する、機材常設・完全防音のVR特化型・無人時間貸しレンタルスペース事業</p>
+    </header>
+
+    <!-- 項目3 -->
+    <section class="section-card">
+      <h2>３．ビジネスアイデアの元（基本的な考え方）</h2>
+      <div class="callout">
+        「レンタルスペース」×「VR機材常設」×「衛生パーツ買い切り」の新結合により、日本の狭小住宅では実現できない100%の没入環境を時間貸しで解放する。
+      </div>
+      <ul>
+        <li><strong>日本の住環境とVR要件の致命的ギャップ：</strong>首都圏単身向け賃貸の平均床面積は<strong>20.3㎡</strong>（総務省統計）であり、家具設置後にSteamVR推奨の安全空間（2m×2m以上）を確保することは物理的に困難です。</li>
+        <li><strong>初期投資・騒音・衛生面の三重苦：</strong>高性能PC＋全身トラッキング（フルトラ）機材一式には<strong>30〜40万円</strong>の初期費用がかかり、さらに「深夜のボイスチャット騒音」「壁や家具への衝突」「不特定多数が使うHMDの汗・皮脂汚れ」が大きな障壁となっています。</li>
+        <li><strong>市場の空白地帯を突く：</strong>ネットカフェは狭すぎて動けず、商業VR施設は決められたゲームしか遊べず、プロ用スタジオは1時間数万円と高額すぎます。個人が手頃な価格で自由にVRChatやダンスを楽しめる専門個室は市場の空白地帯です。</li>
+      </ul>
+    </section>
+
+    <!-- 項目4 -->
+    <section class="section-card">
+      <h2>４．ビジネスプランの内容とビジネススキーム（図）</h2>
+      <div class="grid-2">
+        <div class="box">
+          <h3>① 誰に ＆ ② 何を（2つの部屋仕様）</h3>
+          <p><strong>【ライト室（2室・3〜4畳）】対象：未経験者・購入検討者・学生</strong></p>
+          <ul>
+            <li>Meta Quest 3等のスタンドアロン機常設、手ぶらで即体験</li>
+            <li>料金：<strong>1,500円〜2,500円 / 1時間</strong>（標準試算 2,000円/時）</li>
+          </ul>
+          <p><strong>【ヘビー室（1室・6〜10畳以上）】対象：VRChat住民・VRダンサー・VTuber</strong></p>
+          <ul>
+            <li>ハイエンドPC、天井ベースステーション、トラッカー、防音クッション壁、10Gbps高速LAN完備</li>
+            <li>料金：<strong>4,000円〜6,000円 / 1時間</strong>（標準試算 5,000円/時）</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>③ どのように（提供方法・収益モデル）</h3>
+          <ul>
+            <li><strong>24時間無人スマート運営：</strong>Web予約連動スマートロックと事前オンライン決済により、常駐スタッフ人件費ゼロで運営。</li>
+            <li><strong>高粗利な物販アップセル：</strong>肌に触れる「シリコン製フェイスカバー」を<strong>500円/個（原価率約20%）</strong>で買い切り販売（新規利用者の40%購入想定）し、衛生不安解消と収益向上を両立。</li>
+            <li><strong>時間帯別タイムシェア：</strong>平日昼間は学生・ライト層、夜間・深夜・休日はヘビー層の集会・配信需要を取り込み遊休時間を最小化。</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>ビジネススキーム図（ヒト・モノ・カネ・情報の流れ）</h3>
+      <div class="scheme-diagram">
+        <div class="scheme-row">
+          <div class="scheme-node">
+            <strong>🏢 物件オーナー・通信会社</strong><br>
+            <small>駅近物件（約45㎡/14坪）・10Gbps専有回線</small><br>
+            <span style="color:var(--primary);font-size:0.85rem;">◀ 家賃30万円/月・通信光熱9.5万円/月</span>
+          </div>
+          <div class="scheme-node">
+            <strong>🥽 VR・PC機材 / 消耗品ベンダー</strong><br>
+            <small>ハイエンドPC・Quest 3・トラッカー・衛生カバー</small><br>
+            <span style="color:var(--primary);font-size:0.85rem;">◀ 初期機材100万円・保守積立8万円/月</span>
+          </div>
+          <div class="scheme-node">
+            <strong>🧹 専門清掃業者・決済代行</strong><br>
+            <small>定期巡回清掃・UV除菌管理・Web決済基盤</small><br>
+            <span style="color:var(--primary);font-size:0.85rem;">◀ 清掃費11万円/月・決済手数料4.5%</span>
+          </div>
+        </div>
+        <div class="scheme-arrow">▲ 資金支払・業務委託 ｜ ▼ 空間・インフラ・清潔な機材環境の提供</div>
+        <div class="scheme-node center-node">
+          <strong>🚀 当事業：VR特化型レンタルスペース「V-Room」（1店舗3室モデル：ヘビー1室＋ライト2室）</strong><br>
+          <span>スマートロック自動解錠 × 防音クッション空間 × プラグ＆プレイ常設機材 × UV-C除菌保管庫</span>
+        </div>
+        <div class="scheme-arrow">▼ 安全・清潔なVR空間＆買い切りカバー提供 ｜ ▲ 時間貸し利用料＋物販売上（標準月商 300.6万円）</div>
+        <div class="scheme-row">
+          <div class="scheme-node">
+            <strong>🧑‍🎓 ライト層（平日昼・夕方中心）</strong><br>
+            <small>VR未経験者・機器購入前の検証・学生サークル</small><br>
+            <strong>利用料：2,000円/時 ＋ カバー500円</strong>
+          </div>
+          <div class="scheme-node">
+            <strong>💃 ヘビー層（夜間・深夜・休日中心）</strong><br>
+            <small>VRChatユーザー・VRダンサー・VTuber配信</small><br>
+            <strong>利用料：5,000円/時 ＋ カバー500円</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 項目5 -->
+    <section class="section-card">
+      <h2>５．商品またはサービスの特徴（独自性・市場規模・成長性）</h2>
+      <div class="grid-3">
+        <div class="box" style="text-align:center;">
+          <div>国内メタバース市場予測（2028年度）</div>
+          <div class="stat-num">1兆8,700億円</div>
+          <small>2024年度見込(2,750億円)から約6.8倍へ拡大（矢野経済研究所）</small>
+        </div>
+        <div class="box" style="text-align:center;">
+          <div>VRChat 日本アクセス比率</div>
+          <div class="stat-num">世界第1位 (37%)</div>
+          <small>米国(28%)を抜き世界最大の熱狂的コミュニティ（Sensor Tower）</small>
+        </div>
+        <div class="box" style="text-align:center;">
+          <div>首都圏単身賃貸 平均床面積</div>
+          <div class="stat-num">平均 20.3㎡</div>
+          <small>自宅でのルームスケールVR確保が困難な根拠（総務省統計局）</small>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>比較対象</th>
+              <th>空間の可動域</th>
+              <th>VR機材の専門性</th>
+              <th>衛生・プライバシー</th>
+              <th>時間単価目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td>当事業「V-Room」</td>
+              <td>◎ 6〜10畳 防音クッション壁</td>
+              <td>◎ フルトラ常設・自由ログイン</td>
+              <td>◎ 買い切りカバー＋UV除菌</td>
+              <td>2,000円〜5,000円/時</td>
+            </tr>
+            <tr>
+              <td>自宅（単身ワンルーム）</td>
+              <td>× 家具衝突・階下騒音リスク大</td>
+              <td>△ 自己負担（初期30〜40万円）</td>
+              <td>◎ 個人所有</td>
+              <td>家賃負担（深夜制限あり）</td>
+            </tr>
+            <tr>
+              <td>ネットカフェ個室</td>
+              <td>× 着座のみ（約1畳）</td>
+              <td>× 一般PCのみ（センサー無）</td>
+              <td>△ 共用機器の皮脂懸念</td>
+              <td>500円〜700円/時</td>
+            </tr>
+            <tr>
+              <td>商業VR施設</td>
+              <td>○ プレイゾーンあり</td>
+              <td>× 指定アトラクションのみ</td>
+              <td>△ 不織布マスクのみ</td>
+              <td>約3,000円 / 15分体験</td>
+            </tr>
+            <tr>
+              <td>業務用撮影スタジオ</td>
+              <td>◎ 15畳以上</td>
+              <td>○ モーションキャプチャ</td>
+              <td>○ 清掃管理あり</td>
+              <td>15,000円〜30,000円/時</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 項目6 -->
+    <section class="section-card">
+      <h2>６．ビジネスプランの将来の計画・展望（5年後・10年後の数値目標）</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>時期・フェーズ</th>
+              <th>拠点展開目標</th>
+              <th>数値目標（年商・KPI）</th>
+              <th>実現方法・市場拡大の根拠・継続性</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1年目（Phase 1〜2）</strong><br>実証・ドミナント</td>
+              <td>直営 1〜3拠点<br>（秋葉原・新宿・池袋）</td>
+              <td>1号店年商：<strong>3,607万円</strong><br>3店年商：<strong>1億800万円</strong><br>初期投資回収：約1.8ヶ月</td>
+              <td>VRChat内インフルエンサー・VRダンサーへの先行体験提供、Vket等の大型イベント連動オフ会パック、専門学校・大学サークル向けの平日昼間学割でベース稼働45%を確立。</td>
+            </tr>
+            <tr>
+              <td><strong>3年目（Phase 3）</strong><br>FCパッケージ展開</td>
+              <td>全国 15拠点<br>（東名阪・主要政令市）</td>
+              <td>グループ年商：<strong>1.5億円</strong><br>累計会員：7,500名</td>
+              <td>遊休ビル・空きテナントオーナー向けに「初期投資400万円・無人スマート運営パッケージ」としてフランチャイズ（FC）展開を開始。</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>5年後目標</strong><br>全国都市圏網羅</td>
+              <td>全国 50拠点<br>（直営10店・FC40店）</td>
+              <td>グループ年商：<strong>6.0億円</strong><br>累計会員：30,000名</td>
+              <td>2028年度の国内メタバース市場1兆8,700億円到達（矢野経済研究所予測）の波に乗り、VTuber事務所の公式収録拠点および全国主要駅前の標準インフラとして定着。</td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>10年後目標</strong><br>社会インフラ化</td>
+              <td>全国 150拠点<br>（地方中核都市含む）</td>
+              <td>グループ年商：<strong>20.0億円</strong><br>法人・自治体契約 500社</td>
+              <td>エンタメ利用に加え、企業のXR遠隔技術研修、自治体のメタバース不登校支援・遠隔教育サテライト拠点（BtoB/BtoG）へと用途を拡大し、長期安定収益基盤を確立。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="chart-box">
+        <canvas id="longTermChart"></canvas>
+      </div>
+    </section>
+
+    <!-- 項目7 -->
+    <section class="section-card">
+      <h2>７．その他（これだけは伝えたいこと：法規制クリアと圧倒的な損益分岐点の低さ）</h2>
+      <div class="grid-2">
+        <div class="box">
+          <h3>① 法規制（風営法・旅館業法・消防法）への完全適合</h3>
+          <ul>
+            <li><strong>風営法・旅館業法対策：</strong>完全施錠（内鍵固定）を行わず、扉の一部に防音ガラス窓を配備。宿泊・滞在サービスを規約で禁止し、純粋な「IT機器利用スペース」として所轄警察署へ事前照会を行います。</li>
+            <li><strong>消防法・損害保険：</strong>天井材への不燃材料使用、各室への連動型煙感知器設置、および「施設所有（管理）者賠償責任保険」への加入により転倒・物損リスクを完全にカバーします。</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>② 損益分岐点（BEP）稼働率 10.8% の圧倒的安全性</h3>
+          <ul>
+            <li><strong>無人化による超低固定費：</strong>月間固定費は約72万円（うち家賃30万円）に抑えられており、<strong>1日あたり約2.6時間（稼働率10.8%）</strong>の利用で黒字化します。</li>
+            <li><strong>悲観シナリオでも黒字維持：</strong>万が一稼働率が20%（1日4.8時間）に低迷した場合でも、<strong>月間約70万円の営業黒字（約5.7ヶ月で投資回収）</strong>を確保できる高い継続性を誇ります。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 項目8 -->
+    <section class="section-card">
+      <h2>８．事業試算表（初期投資400万円内訳・月次PL・3シナリオ感度分析）</h2>
+      <div class="grid-2">
+        <div class="table-container">
+          <h3>初期投資計画（CAPEX：400万円）</h3>
+          <table>
+            <thead>
+              <tr><th>費目</th><th>内訳</th><th>金額</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>物件契約初期費用</td><td>敷金3ヶ月、礼金1ヶ月、仲介料等</td><td>150万円</td></tr>
+              <tr><td>内装・防音施工</td><td>防音クッション壁・床、防音扉等</td><td>110万円</td></tr>
+              <tr><td>VR・PC機材費</td><td>ハイエンドPC×1、Quest 3×2、センサー</td><td>100万円</td></tr>
+              <tr><td>運用インフラ費</td><td>スマートロック×3、防犯カメラ、10G機器</td><td>40万円</td></tr>
+              <tr class="highlight-row"><td>初期投資合計</td><td>自己資金＋日本政策金融公庫融資想定</td><td>400万円</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-container">
+          <h3>月次損益（標準：稼働率45%）</h3>
+          <table>
+            <thead>
+              <tr><th>項目</th><th>算出根拠</th><th>月額</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ヘビー室売上(1室)</td><td>5,000円×10.8h×30日</td><td>1,620,000円</td></tr>
+              <tr><td>ライト室売上(2室)</td><td>2,000円×10.8h×2室×30日</td><td>1,296,000円</td></tr>
+              <tr><td>物販（カバー等）</td><td>500円×新規40%＋飲料粗利</td><td>90,000円</td></tr>
+              <tr class="highlight-row"><td>月間総売上高</td><td>年商換算 3,607.2万円</td><td>3,006,000円</td></tr>
+              <tr><td>家賃・共益費</td><td>駅近約14坪（45㎡）</td><td>▲300,000円</td></tr>
+              <tr><td>光熱費・通信費</td><td>PC稼働電力・10Gbps専有回線</td><td>▲95,000円</td></tr>
+              <tr><td>決済手数料</td><td>売上の4.5%</td><td>▲135,270円</td></tr>
+              <tr><td>清掃代行・消耗品</td><td>巡回清掃外注・除菌消耗品</td><td>▲110,000円</td></tr>
+              <tr><td>機器保守積立・損保</td><td>HMD更新積立・賠償責任保険</td><td>▲80,000円</td></tr>
+              <tr class="highlight-row"><td>月間営業利益</td><td>営業利益率 約76.0%</td><td>2,285,730円</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="table-container" style="margin-top:18px;">
+        <h3>3シナリオ感度分析（悲観20%・標準45%・楽観65%）</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>指標</th>
+              <th>悲観シナリオ（稼働率20%：4.8h/日）</th>
+              <th>標準シナリオ（稼働率45%：10.8h/日）</th>
+              <th>楽観シナリオ（稼働率65%：15.6h/日）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>月間総売上高</td><td>1,344,000円</td><td>3,006,000円</td><td>4,342,000円</td></tr>
+            <tr><td>月間総費用</td><td>645,480円</td><td>720,270円</td><td>780,390円</td></tr>
+            <tr class="highlight-row"><td>月間営業利益</td><td>+698,520円</td><td>+2,285,730円</td><td>+3,561,610円</td></tr>
+            <tr><td>初期投資回収期間</td><td>約 5.7ヶ月</td><td>約 1.8ヶ月</td><td>約 1.1ヶ月</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 出典リンク集 -->
+    <section class="section-card">
+      <h2>参考資料・公的統計エビデンスURL一覧</h2>
+      <ul>
+        <li><strong>株式会社矢野経済研究所「メタバースの国内市場動向調査を実施（2024年）」：</strong><a href="https://www.yano.co.jp/press-release/show/press_id/3688" target="_blank" rel="noopener" class="external-link">https://www.yano.co.jp/press-release/show/press_id/3688</a></li>
+        <li><strong>総務省「情報通信白書」：</strong><a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/" target="_blank" rel="noopener" class="external-link">https://www.soumu.go.jp/johotsusintokei/whitepaper/</a></li>
+        <li><strong>総務省統計局「令和5年 住宅・土地統計調査」：</strong><a href="https://www.stat.go.jp/data/jyutaku/index.html" target="_blank" rel="noopener" class="external-link">https://www.stat.go.jp/data/jyutaku/index.html</a></li>
+        <li><strong>国土交通省「住生活基本計画（全国計画）居住面積水準」：</strong><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk2_000032.html" target="_blank" rel="noopener" class="external-link">https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk2_000032.html</a></li>
+        <li><strong>Sensor Tower「公式サイト訪問者数は日本がトップのVRChat」：</strong><a href="https://sensortower.com/ja/blog/vrchat-high-popularity-in-japan-JP" target="_blank" rel="noopener" class="external-link">https://sensortower.com/ja/blog/vrchat-high-popularity-in-japan-JP</a></li>
+        <li><strong>Valve Corporation「Steam Hardware & Software Survey」：</strong><a href="https://store.steampowered.com/hwsurvey/" target="_blank" rel="noopener" class="external-link">https://store.steampowered.com/hwsurvey/</a></li>
+        <li><strong>一般社団法人全国専門学校情報教育協会「第23回 ビジネスプロデュースコンペティション」：</strong><a href="https://www.invite.gr.jp/bpc/index.htm" target="_blank" rel="noopener" class="external-link">https://www.invite.gr.jp/bpc/index.htm</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const htmlEl = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+    let chartInstance = null;
+
+    function renderChart() {
+      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+      const textColor = isDark ? '#f9fafb' : '#0f172a';
+      const gridColor = isDark ? '#374151' : '#cbd5e1';
+      const ctx = document.getElementById('longTermChart').getContext('2d');
+
+      if (chartInstance) chartInstance.destroy();
+      chartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['1年目(直営1〜3店)', '3年目(全国15店)', '5年後(全国50店)', '10年後(全国150店)'],
+          datasets: [
+            {
+              type: 'bar',
+              label: '展開拠点数（店舗）',
+              data: [3, 15, 50, 150],
+              backgroundColor: '#38bdf8',
+              yAxisID: 'y1',
+              borderRadius: 6
+            },
+            {
+              type: 'line',
+              label: 'グループ目標年商（億円）',
+              data: [1.08, 1.5, 6.0, 20.0],
+              borderColor: '#2563eb',
+              backgroundColor: '#2563eb',
+              borderWidth: 3,
+              pointRadius: 5,
+              yAxisID: 'y2'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { ticks: { color: textColor }, grid: { color: gridColor } },
+            y1: { type: 'linear', position: 'left', ticks: { color: textColor }, grid: { color: gridColor }, title: { display: true, text: '拠点数（店舗）', color: textColor } },
+            y2: { type: 'linear', position: 'right', ticks: { color: textColor }, grid: { display: false }, title: { display: true, text: '年商（億円）', color: textColor } }
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { color: textColor } }
+          }
+        }
+      });
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      toggleBtn.textContent = next === 'dark' ? '☀️ ライトモード切替' : '🌙 ダークモード切替';
+      renderChart();
+    });
+
+    window.addEventListener('DOMContentLoaded', renderChart);
+  </script>
+</body>
+</html>
