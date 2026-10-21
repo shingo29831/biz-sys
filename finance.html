@@ -20,6 +20,7 @@
       <a href="spec.html" class="nav-link">2. 詳細仕様・BPC審査要約</a>
       <a href="market.html" class="nav-link">3. 市場調査・公式リンク集</a>
       <a href="finance.html" class="nav-link active">4. 財務試算・感度分析</a>
+      <a href="entry.html" class="nav-link">5. 応募書類コピペ・図解画像</a>
     </nav>
 
     <header>
@@ -29,42 +30,52 @@
     </header>
 
     <div class="section-card">
-      <h2>1. 初期投資計画（CAPEX：合計 400万円）</h2>
-      <p>モデル店舗：秋葉原・新宿・池袋等の駅近物件（約45㎡ / 約14坪）、計3室（防音フルトラ室1室＋体験室2室）構成。</p>
+      <h2>1. 初期投資計画（公式Excel「bpc_jigyoushisan2026.xls」完全準拠：計400万円＋運転資金100万円）</h2>
+      <p>モデル店舗：秋葉原・新宿・池袋等の駅近物件（約45㎡ / 約14坪）、計3室（防音フルトラ室1室＋体験室2室）構成。応募用Excelシートの勘定科目（資本金・物件取得費・設備費・開発費・開業費・初期運転資金）に完全対応しています。</p>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>費目</th>
-              <th>内訳</th>
-              <th>金額（税抜）</th>
+              <th>公式Excel勘定科目</th>
+              <th>具体的な内訳</th>
+              <th>金額（円）</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>物件契約初期費用</strong></td>
+              <td><strong>資本金（セルC5）</strong></td>
+              <td>開業資金総額（自己資金＋日本政策金融公庫 新創業融資制度想定）</td>
+              <td><strong>5,000,000円</strong></td>
+            </tr>
+            <tr>
+              <td><strong>物件取得費（セルC7）</strong></td>
               <td>敷金・保証金（賃料30万円×3ヶ月）、礼金1ヶ月、仲介手数料、前家賃</td>
-              <td>150万円</td>
+              <td>1,500,000円</td>
             </tr>
             <tr>
-              <td><strong>内装・防音施工</strong></td>
-              <td>壁・床防音クッションマット敷設、防音ドア、天井配線レール設置</td>
-              <td>110万円</td>
+              <td><strong>設備費（セルC8）</strong></td>
+              <td>防音クッション壁・床施工（110万円）＋ ハイエンドPC・Quest 3×2・常設BS・除菌庫（100万円）</td>
+              <td>2,100,000円</td>
             </tr>
             <tr>
-              <td><strong>VR・PC機材費</strong></td>
-              <td>ハイエンドゲーミングPC 1台、Meta Quest 3×2台、ベースステーション、トラッカー</td>
-              <td>100万円</td>
+              <td><strong>開発費（セルC9）</strong></td>
+              <td>Web予約システム・スマートロック3室＆機材庫PIN自動連携システム設定</td>
+              <td>200,000円</td>
             </tr>
             <tr>
-              <td><strong>運用インフラ費</strong></td>
-              <td>スマートロック×3、共用部防犯カメラ、法人10Gbps対応ネットワーク機器</td>
-              <td>40万円</td>
+              <td><strong>開業費（セルC10）</strong></td>
+              <td>法人10Gbps光回線引込工事、共用部防犯カメラ設置、初期プロモーション費</td>
+              <td>200,000円</td>
             </tr>
             <tr class="highlight-cell">
-              <td><strong>初期投資合計</strong></td>
-              <td>開業時必要資金（自己資金＋日本政策金融公庫 創業融資想定）</td>
-              <td><strong>400万円</strong></td>
+              <td><strong>初期投資 計（セルC15）</strong></td>
+              <td>物件取得費＋設備費＋開発費＋開業費の合計（<code>=SUM(C7:C14)</code>）</td>
+              <td><strong>4,000,000円</strong></td>
+            </tr>
+            <tr class="highlight-cell">
+              <td><strong>初期運転資金（セルC17）</strong></td>
+              <td>資本金500万円 − 初期投資計400万円（開業後の安全バッファ資金）</td>
+              <td><strong>1,000,000円</strong></td>
             </tr>
           </tbody>
         </table>

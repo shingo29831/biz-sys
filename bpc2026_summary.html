@@ -176,6 +176,7 @@
 <body>
   <div class="container">
     <div class="toolbar">
+      <a href="entry.html" class="btn" style="text-decoration:none;border-color:var(--primary);color:var(--primary);">📋 応募書類コピペ＆図解画像ページ（entry.html）へ移動</a>
       <button id="theme-toggle" class="btn">🌙 ダークモード切替</button>
       <button onclick="window.print()" class="btn">🖨️ A4印刷 / PDF保存</button>
     </div>
@@ -204,16 +205,16 @@
       <h2>４．ビジネスプランの内容とビジネススキーム（図）</h2>
       <div class="grid-2">
         <div class="box">
-          <h3>① 誰に ＆ ② 何を（2つの部屋仕様）</h3>
-          <p><strong>【ライト室（2室・3〜4畳）】対象：未経験者・購入検討者・学生</strong></p>
+          <h3>① 誰に ＆ ② 何を（機器持込／手ぶら選択制×パック割引）</h3>
+          <p><strong>【ライト室（2室・3〜4畳）】対象：自前HMD持込層・未経験者・学生</strong></p>
           <ul>
-            <li>Meta Quest 3等のスタンドアロン機常設、手ぶらで即体験</li>
-            <li>料金：<strong>1,500円〜2,500円 / 1時間</strong>（標準試算 2,000円/時）</li>
+            <li>機器持ち込み：<strong>600円/h</strong>（3h 1,500円・深夜8h 2,400円＝実質300円/h）</li>
+            <li>手ぶらレンタル（Quest 3込）：<strong>1,000円/h</strong>（平均想定単価 900円/h）</li>
           </ul>
-          <p><strong>【ヘビー室（1室・6〜10畳以上）】対象：VRChat住民・VRダンサー・VTuber</strong></p>
+          <p><strong>【ヘビー室（1室・6〜10畳防音）】対象：VRChat住民・VRダンサー・VTuber</strong></p>
           <ul>
-            <li>ハイエンドPC、天井ベースステーション、トラッカー、防音クッション壁、10Gbps高速LAN完備</li>
-            <li>料金：<strong>4,000円〜6,000円 / 1時間</strong>（標準試算 5,000円/時）</li>
+            <li>機器持ち込み（防音＋PC＋常設BS）：<strong>1,200円/h</strong>（深夜8h 4,500円）</li>
+            <li>手ぶらフルレンタル（フルトラ一式込）：<strong>2,000円/h</strong>（平均想定単価 1,800円/h）</li>
           </ul>
         </div>
         <div class="box">
@@ -427,43 +428,43 @@
         </div>
 
         <div class="table-container">
-          <h3>月次損益（標準：稼働率45%）</h3>
+          <h3>月次損益（標準：稼働率45%・公式Excel単価×量準拠）</h3>
           <table>
             <thead>
-              <tr><th>項目</th><th>算出根拠</th><th>月額</th></tr>
+              <tr><th>項目</th><th>算出根拠（単価×量）</th><th>月額</th></tr>
             </thead>
             <tbody>
-              <tr><td>ヘビー室売上(1室)</td><td>5,000円×10.8h×30日</td><td>1,620,000円</td></tr>
-              <tr><td>ライト室売上(2室)</td><td>2,000円×10.8h×2室×30日</td><td>1,296,000円</td></tr>
-              <tr><td>物販（カバー等）</td><td>500円×新規40%＋飲料粗利</td><td>90,000円</td></tr>
-              <tr class="highlight-row"><td>月間総売上高</td><td>年商換算 3,607.2万円</td><td>3,006,000円</td></tr>
-              <tr><td>家賃・共益費</td><td>駅近約14坪（45㎡）</td><td>▲300,000円</td></tr>
-              <tr><td>光熱費・通信費</td><td>PC稼働電力・10Gbps専有回線</td><td>▲95,000円</td></tr>
-              <tr><td>決済手数料</td><td>売上の4.5%</td><td>▲135,270円</td></tr>
-              <tr><td>清掃代行・消耗品</td><td>巡回清掃外注・除菌消耗品</td><td>▲110,000円</td></tr>
-              <tr><td>機器保守積立・損保</td><td>HMD更新積立・賠償責任保険</td><td>▲80,000円</td></tr>
-              <tr class="highlight-row"><td>月間営業利益</td><td>営業利益率 約76.0%</td><td>2,285,730円</td></tr>
+              <tr><td>ヘビー室売上(1室)</td><td>平均1,800円×324時間(10.8h×30日)</td><td>583,200円</td></tr>
+              <tr><td>ライト室売上(2室)</td><td>平均900円×648時間(10.8h×2室×30日)</td><td>583,200円</td></tr>
+              <tr><td>物販・オプション</td><td>カバー/追加機器500円×150件＋飲料150円×100本</td><td>90,000円</td></tr>
+              <tr class="highlight-row"><td>月間総売上高</td><td>年商換算 1,507.7万円</td><td>1,256,400円</td></tr>
+              <tr><td>家賃・共益費</td><td>300,000円×1ヶ月（駅近約14坪）</td><td>▲300,000円</td></tr>
+              <tr><td>光熱費・通信費</td><td>光熱75,000円(1,859kWh)＋10G回線20,000円</td><td>▲95,000円</td></tr>
+              <tr><td>決済手数料</td><td>売上の4.5%（56,538円×1）</td><td>▲56,538円</td></tr>
+              <tr><td>清掃代行・消耗品</td><td>週5回巡回清掃（5,500円×月20回）</td><td>▲110,000円</td></tr>
+              <tr><td>機器保守積立・損保</td><td>保守更新積立65,000円＋賠償保険15,000円</td><td>▲80,000円</td></tr>
+              <tr class="highlight-row"><td>月間営業利益</td><td>営業利益率 約48.9%（約6.5ヶ月回収）</td><td>614,862円</td></tr>
             </tbody>
           </table>
         </div>
       </div>
 
       <div class="table-container" style="margin-top:18px;">
-        <h3>3シナリオ感度分析（悲観20%・標準45%・楽観65%）</h3>
+        <h3>3シナリオ感度分析（悲観25%・標準45%・楽観65%）</h3>
         <table>
           <thead>
             <tr>
               <th>指標</th>
-              <th>悲観シナリオ（稼働率20%：4.8h/日）</th>
+              <th>悲観シナリオ（稼働率25%：6.0h/日）</th>
               <th>標準シナリオ（稼働率45%：10.8h/日）</th>
               <th>楽観シナリオ（稼働率65%：15.6h/日）</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>月間総売上高</td><td>1,344,000円</td><td>3,006,000円</td><td>4,342,000円</td></tr>
-            <tr><td>月間総費用</td><td>645,480円</td><td>720,270円</td><td>780,390円</td></tr>
-            <tr class="highlight-row"><td>月間営業利益</td><td>+698,520円</td><td>+2,285,730円</td><td>+3,561,610円</td></tr>
-            <tr><td>初期投資回収期間</td><td>約 5.7ヶ月</td><td>約 1.8ヶ月</td><td>約 1.1ヶ月</td></tr>
+            <tr><td>月間総売上高</td><td>698,000円</td><td>1,256,400円</td><td>1,814,800円</td></tr>
+            <tr><td>月間総費用</td><td>616,410円</td><td>641,538円</td><td>666,666円</td></tr>
+            <tr class="highlight-row"><td>月間営業利益</td><td>+81,590円</td><td>+614,862円</td><td>+1,148,134円</td></tr>
+            <tr><td>初期投資回収期間</td><td>約 49.0ヶ月（黒字維持）</td><td>約 6.5ヶ月</td><td>約 3.5ヶ月</td></tr>
           </tbody>
         </table>
       </div>

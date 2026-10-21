@@ -409,7 +409,147 @@ footer {
   font-size: 0.85rem;
 }
 
+/* コピペブロック・図解画像プレビュー・Excel転記表用スタイル */
+.copy-block {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-sub);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.copy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--table-th);
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.copy-title {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-main);
+}
+
+.copy-content {
+  padding: 16px;
+  font-family: inherit;
+  font-size: 0.94rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-main);
+  background: var(--card-bg);
+}
+
+.copy-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.copy-btn:hover, .copy-btn.primary-btn {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.copy-btn.copied {
+  background: #16a34a !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.copy-btn.sm {
+  padding: 2px 8px;
+  font-size: 0.78rem;
+  margin-left: 6px;
+}
+
+.figure-box {
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  background: var(--card-sub);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.figure-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.figure-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.figure-preview {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.rendered-figure-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.tab-bar {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card-sub);
+  color: var(--text-main);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.num-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.auto-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--table-th);
+  color: var(--text-sub);
+}
+
 @media print {
-  .theme-switch-wrapper, .global-nav { display: none; }
+  .theme-switch-wrapper, .global-nav, .copy-btn, .tab-bar { display: none; }
   .section-card { page-break-inside: avoid; box-shadow: none; }
 }

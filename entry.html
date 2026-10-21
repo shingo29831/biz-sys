@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5. 応募書類コピペ・図解画像シート：防音VR個室V-Room</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="theme-switch-wrapper">
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="テーマ切替">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-text">ダークモードに切替</span>
+      </button>
+      <button onclick="window.print()" class="theme-toggle-btn">🖨️ A4印刷 / PDF保存</button>
+    </div>
+
+    <nav class="global-nav">
+      <a href="index.html" class="nav-link">1. 事業構想・概要</a>
+      <a href="spec.html" class="nav-link">2. 詳細仕様・BPC審査要約</a>
+      <a href="market.html" class="nav-link">3. 市場調査・公式リンク集</a>
+      <a href="finance.html" class="nav-link">4. 財務試算・感度分析</a>
+      <a href="entry.html" class="nav-link active">5. 応募書類コピペ・図解画像</a>
+    </nav>
+
+    <header>
+      <span class="badge">第23回 BPC応募ファイル（Word 2種・Excel 1種）完全対応</span>
+      <h1>応募ファイルそのままコピペ＆図解画像シート</h1>
+      <p class="subtitle">審査用紙（.doc）・事業試算表（.xls）・参加申込書（.doc）の各欄へワンクリックで転記・画像貼付が可能</p>
+    </header>
+
+    <!-- 使い方ガイド -->
+    <div class="section-card">
+      <h2>💡 応募ファイルへの転記・画像貼り付け手順</h2>
+      <div class="grid-3">
+        <div class="spec-card">
+          <h4>① 文章項目のコピペ</h4>
+          <p style="font-size:0.9rem;">各設問右上の<strong>「📋 コピー」</strong>ボタンを押すと、提出時に削除すべき注意書きを除いた完成テキストがコピーされます。</p>
+        </div>
+        <div class="spec-card">
+          <h4>② 図解（画像）のWord貼付</h4>
+          <p style="font-size:0.9rem;">各図の下にある<strong>「🖼️ 画像をコピー」</strong>を押すか、表示された<strong>画像（PNG）を右クリック→「画像をコピー」</strong>してWordへそのまま<code>Ctrl+V</code>で貼り付けられます。</p>
+        </div>
+        <div class="spec-card">
+          <h4>③ 事業試算表（Excel）転記</h4>
+          <p style="font-size:0.9rem;"><code>bpc_jigyoushisan2026.xls</code>の実際のセル配置（初期投資・単価×量＝売上・単価×量＝経費）通りに1セルずつコピーできます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         PART 1: ビジネスプラン審査用紙 (bpc_sinsayousi2026.doc)
+    =========================================== -->
+    <div class="section-card">
+      <h2>📄 1. ビジネスプラン審査用紙（bpc_sinsayousi2026.doc）コピペ欄</h2>
+
+      <!-- 項目1 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">１．ビジネスプラン名（10字程度）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-1', this)">📋 項目1をコピー</button>
+        </div>
+        <pre id="doc-item-1" class="copy-content">防音VR個室V-Room</pre>
+      </div>
+
+      <!-- 項目2 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">２．ビジネスプランのテーマ</span>
+          <button class="copy-btn" onclick="copyText('doc-item-2', this)">📋 項目2をコピー</button>
+        </div>
+        <pre id="doc-item-2" class="copy-content">日本の狭小な住環境課題と衛生不安を解消する、機材常設・完全防音のVR特化型・無人時間貸しレンタルスペース事業</pre>
+      </div>
+
+      <!-- 項目3 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">３．ビジネスアイデアの元（基本的な考え方）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-3', this)">📋 項目3をコピー</button>
+        </div>
+        <pre id="doc-item-3" class="copy-content">【着眼点：日本の熱狂的なVR需要と「狭小住宅・騒音・初期費用・衛生面」の致命的ギャップ】
+ソーシャルVR「VRChat」の国別アクセス比率で日本は世界第1位（37%・Sensor Tower調査）を記録し、国内メタバース市場も急拡大している。しかし、ユーザーは以下の「4つの壁」により自宅で100%の没入体験を得られていない。
+1. 住環境の物理的制約：首都圏単身向け賃貸の平均床面積は20.3㎡（総務省「令和5年住宅・土地統計調査」）であり、家具設置後にSteamVR推奨のルームスケール空間（2m×2m以上）を確保することが物理的に困難で、壁や家具への衝突事故が頻発している。
+2. 深夜の騒音トラブル：ボイスチャットやダンス時の足音・発声が隣室や家族への騒音となり、メイン活動時間である夜間〜深夜（21時〜翌3時）に思い切り遊べない。
+3. 初期投資の壁：ハイエンドゲーミングPC・VRヘッドセット（HMD）・全身トラッキング（フルトラ）センサー一式を揃えるには35万〜45万円の初期費用と高度な配線・設定知識が必要となる。
+4. 既存施設の限界と衛生不安：ネットカフェは狭すぎて着座しかできず、商業VR施設は指定ゲームしか遊べず、共用HMDの「他人の汗・皮脂汚れ」への嫌悪感が強い。またプロ用撮影スタジオは1時間1.5万〜3万円と個人には高額すぎる。
+
+【解決の基本コンセプト（新結合）】
+「防音クッション個室の時間貸し」×「選べる機材プラン（自前HMD持込／手ぶらフルレンタル）」×「肌接触シリコンカバー買い切り販売（500円）」を掛け合わせ、ネットカフェやカラオケ感覚の低価格（1時間600円〜2,000円、深夜パック実質300円/時〜）で安全・清潔に全身で没入できるVR専用空間「V-Room」を創出した。</pre>
+      </div>
+
+      <!-- 項目4 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">４．ビジネスプランの内容とビジネススキーム（図）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-4', this)">📋 項目4の本文をコピー</button>
+        </div>
+        <pre id="doc-item-4" class="copy-content">① 誰に（ターゲット顧客）
+・ライト層＆自前HMD持ち込み層（平日昼〜夕方中心）：VR未経験者、機器購入前にVR酔いや性能を試したい検討層、自前Quest 3等は持っているが自宅が狭く動けない単身者・学生グループ。
+・ヘビー層＆配信者層（夜間・深夜・休日中心）：VRChatの定例集会・音楽イベント参加者、全身トラッキングで踊るVRダンサー、防音環境と高速回線を求める個人VTuber・配信者。
+
+② 何を（提供サービスと価格体系）
+駅近ビル（約14坪/45㎡）に1店舗3室（ライト室2室＋ヘビー室1室）を配置し、「機器持ち込み（貸出なし）」と「手ぶらフルレンタル（貸出あり）」および「長時間パック割引」を提供する。
+【ライト室（2室・3〜4畳クッション個室：高速Wi-Fi 6E完備）】
+・機器持ち込みプラン（空間のみ）：1時間 600円 ／ 3時間パック 1,500円 ／ 深夜8hパック 2,400円（実質300円/時）
+・手ぶらレンタルプラン（Meta Quest 3一式込）：1時間 1,000円 ／ 3時間パック 2,500円 ／ 深夜8hパック 3,800円
+【ヘビー室（1室・6〜10畳完全防音個室：ハイエンドPC・天井ベースステーション常設・10Gbps有線LAN）】
+・機器持ち込みプラン（防音室＋PC＋常設BS利用）：1時間 1,200円 ／ 3時間パック 3,000円 ／ 深夜8hパック 4,500円（実質562円/時）
+・手ぶらフルレンタルプラン（防音室＋PC＋HMD＋フルトラッカー一式込）：1時間 2,000円 ／ 3時間パック 5,000円 ／ 深夜8hパック 6,800円
+【オプション・衛生アップセル】
+・肌接触シリコン製フェイスカバー買い切り販売：500円/個（原価約100円・次回以降マイカバー持参で追加費用0円）
+・フルトラッカー単発追加レンタル：+500円/回、室内ドリンク物販（実質粗利150円/本）
+
+③ どのように（提供方法・24時間無人スマート収益モデル）
+・Web予約システムと事前オンライン決済（クレジットカード・PayPay等）を完了後、利用時間のみ有効なスマートロック暗証番号（PIN）を自動発行する。
+・「手ぶらレンタル」選択時のみ、室内のスマート機材保管庫（UV-C紫外線除菌機能付）のPINも同時発行して解錠する仕組みとし、常駐スタッフ人件費ゼロの24時間無人運営を実現する。
+・定期巡回清掃（週5回）は専門業者へ外注し、低固定費（月約64.2万円）と高利益率（標準稼働45%で月商125.6万円・営業利益61.5万円・利益率48.9%）を両立する。
+
+※以下に「ビジネススキーム図（画像）」を貼り付け</pre>
+      </div>
+
+      <!-- 項目4用 画像レンダリングボックス -->
+      <div class="figure-box">
+        <div class="figure-header">
+          <div>
+            <strong>🖼️ 項目4貼付用画像：【図1】ビジネススキーム図（ヒト・モノ・カネ・情報の流れ）</strong>
+            <p style="font-size:0.85rem;color:var(--text-sub);margin:0;">下の画像は実際のPNG画像（<code>&lt;img&gt;</code>）です。右クリック「画像をコピー」またはボタンからWordへ直接貼り付けられます。</p>
+          </div>
+          <div class="figure-actions">
+            <button class="copy-btn primary-btn" onclick="copyCanvasImage('canvas-scheme', this)">🖼️ 画像をクリップボードにコピー</button>
+            <button class="copy-btn" onclick="downloadCanvasImage('canvas-scheme', 'bpc_fig1_scheme.png')">📥 PNG保存</button>
+          </div>
+        </div>
+        <div class="figure-preview">
+          <canvas id="canvas-scheme" width="1200" height="720" style="display:none;"></canvas>
+          <img id="img-scheme" alt="ビジネススキーム図（ヒト・モノ・カネ・情報の流れ）" class="rendered-figure-img">
+        </div>
+      </div>
+
+      <!-- 項目5 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">５．商品またはサービスの特徴（独自性・強み・市場規模・成長性）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-5', this)">📋 項目5の本文をコピー</button>
+        </div>
+        <pre id="doc-item-5" class="copy-content">【1. 本サービスの3つの独自性・強み（競合優位性）】
+① 「全面防音クッション空間 × 常設ベースステーション」による100%の安全性と即応性
+壁・床全面に高密度ウレタン防音クッション材（遮音等級Dr-40相当）を施工し、天井四隅に高精度レーザーセンサー（ベースステーション）を常設。自宅では不可能な「家具への衝突恐怖ゼロ・深夜の防音環境・面倒な初期キャリブレーション不要（入室1分でフルトラ起動）」を実現する。
+② 「機器持ち込み／手ぶらレンタル選択制」とネットカフェ並みの圧倒的コスパ
+既にHMDを所有する層には「空間＋高速回線＋常設センサー（600円〜1,200円/時）」を、未所有層には「フルセット貸出（1,000円〜2,000円/時）」を提供。深夜8時間パック（2,400円〜）は実質300円/時〜と快活CLUB等のネットカフェ個室と同等価格でありながら、全身を使って安全に動ける唯一無二のポジションを確立している。
+③ 「買い切りシリコンカバー（500円）＋UV-C除菌庫」による衛生不安の完全払拭
+共用VR最大の障壁である「他人の汗・皮脂汚れ」に対し、肌に触れるシリコンカバーを500円で買い切り販売（マイカバーとして次回持参可）し、退室ごとに波長254nmのUV-C除菌保管庫でHMDを自動殺菌することで潔癖層や女性ユーザーの心理的ハードルを解消する。
+
+【2. 市場の規模・成長性とターゲット市場推計（TAM / SAM / SOM）】
+・TAM（国内メタバース市場全体）：株式会社矢野経済研究所の調査（2024年）によると、国内メタバース市場規模は2023年度の1,863億円、2024年度見込の2,750億円から、2028年度には「1兆8,700億円（約6.8倍、年平均成長率61.5%）」へ急成長すると予測されている。
+・SAM（国内コンシューマVR・空間利用潜在市場）：Steamハードウェア調査およびVRChat日本アクセス比率世界1位（37%）から推計される国内アクティブVR・メタバース関心層（約350万人）のうち、単身狭小住宅（首都圏平均20.3㎡）や防音制約を抱える潜在空間利用市場は約525億円規模に達する。
+・SOM（当事業の獲得目標市場）：初期は秋葉原・新宿・池袋等のポップカルチャー集積地からドミナント展開し、10年後に全国150拠点・年商22.5億円（SAMの約4.3%）を獲得する。
+
+※以下に「市場規模推移＆競合ポジショニング比較図（画像）」を貼り付け</pre>
+      </div>
+
+      <!-- 項目5用 画像レンダリングボックス -->
+      <div class="figure-box">
+        <div class="figure-header">
+          <div>
+            <strong>🖼️ 項目5貼付用画像：【図2】国内メタバース市場予測＆競合ポジショニング比較図</strong>
+            <p style="font-size:0.85rem;color:var(--text-sub);margin:0;">右クリック「画像をコピー」またはボタンからWordの項目5へ貼り付けられます。</p>
+          </div>
+          <div class="figure-actions">
+            <button class="copy-btn primary-btn" onclick="copyCanvasImage('canvas-market', this)">🖼️ 画像をクリップボードにコピー</button>
+            <button class="copy-btn" onclick="downloadCanvasImage('canvas-market', 'bpc_fig2_market.png')">📥 PNG保存</button>
+          </div>
+        </div>
+        <div class="figure-preview">
+          <canvas id="canvas-market" width="1200" height="620" style="display:none;"></canvas>
+          <img id="img-market" alt="国内メタバース市場予測＆競合ポジショニング比較図" class="rendered-figure-img">
+        </div>
+      </div>
+
+      <!-- 項目6 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">６．ビジネスプランの将来の計画・展望（5年後・10年後の数値目標、実現方法、市場拡大の根拠、継続性）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-6', this)">📋 項目6の本文をコピー</button>
+        </div>
+        <pre id="doc-item-6" class="copy-content">【1. フェーズ別数値目標（1年目〜5年後・10年後）】
+・1年目（Phase 1〜2：実証＆首都圏ドミナント）：直営1号店（秋葉原・年商1,508万円・営業利益738万円）を開業し、初期投資400万円を約6.5ヶ月で回収。18ヶ月目までに新宿・池袋へ直営3店舗を展開（年商4,520万円・累計会員2,500名）。
+・3年目（Phase 3：FCパッケージ展開）：無人スマート運営ノウハウを標準化し、都市部の空きビル・遊休テナントオーナー向けに「初期投資400万円・高利回り無人FCパッケージ」として展開。東名阪・主要政令市へ計15拠点（グループ年商2.25億円）を達成。
+・5年後目標（Phase 4：全国都市圏網羅）：全国50拠点（直営10店・FC40店）、グループ年商7.5億円、累計会員30,000名。
+・10年後目標（Phase 5：XR社会インフラ化）：全国150拠点（地方中核都市駅前・商業施設内含む）、グループ年商22.5億円、法人・自治体契約500団体。
+
+【2. 実現方法と市場拡大の根拠】
+・初期集客とコミュニティ定着：世界最大のアクセス比率（37%）を誇る日本のVRChatコミュニティやVRダンスイベント、バーチャルマーケット（Vket）と連動した「リアル同時接続オフ会パック」を展開。平日昼間のアイドルタイムは情報系専門学校・大学サークル向けの「アカデミック学割」や機器購入前のお試し利用で稼働率を底上げする。
+・BtoCエンタメからBtoB/BtoGへの市場拡大（5年後〜10年後）：2028年度の国内メタバース市場1兆8,700億円到達に伴い、個人の趣味・VTuber配信拠点にとどまらず、企業の「XR遠隔技術研修・危険作業シミュレーション拠点」や、自治体・教育機関の「メタバース不登校支援・遠隔教育サテライト教室」として昼間時間帯の法人・行政サブスクリプション契約を拡大する。
+
+【3. 事業の継続性（サステナビリティ）】
+・損益分岐点（BEP）稼働率21.5%（1日約5.2時間）という極めて低い固定費構造により、仮に稼働率25%（1日6時間）の悲観シナリオでも毎月約8.2万円の営業黒字を維持できる。
+・毎月6.5万円（年間78万円/店）の「VR機器保守更新積立金」を経費内に組み込んでおり、2〜3年周期の新型HMD・GPUアップデートを追加借入なしで継続実施できるため、陳腐化リスクを防ぎ長期安定運営が可能である。
+
+※以下に「5年後・10年後ロードマップ＆数値目標推移図（画像）」を貼り付け</pre>
+      </div>
+
+      <!-- 項目6用 画像レンダリングボックス -->
+      <div class="figure-box">
+        <div class="figure-header">
+          <div>
+            <strong>🖼️ 項目6貼付用画像：【図3】5年後・10年後の拠点展開＆グループ年商成長ロードマップ図</strong>
+            <p style="font-size:0.85rem;color:var(--text-sub);margin:0;">右クリック「画像をコピー」またはボタンからWordの項目6へ貼り付けられます。</p>
+          </div>
+          <div class="figure-actions">
+            <button class="copy-btn primary-btn" onclick="copyCanvasImage('canvas-roadmap', this)">🖼️ 画像をクリップボードにコピー</button>
+            <button class="copy-btn" onclick="downloadCanvasImage('canvas-roadmap', 'bpc_fig3_roadmap.png')">📥 PNG保存</button>
+          </div>
+        </div>
+        <div class="figure-preview">
+          <canvas id="canvas-roadmap" width="1200" height="580" style="display:none;"></canvas>
+          <img id="img-roadmap" alt="5年後・10年後の拠点展開＆グループ年商成長ロードマップ図" class="rendered-figure-img">
+        </div>
+      </div>
+
+      <!-- 項目7 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">７．その他（これだけは伝えたいこと）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-7', this)">📋 項目7をコピー</button>
+        </div>
+        <pre id="doc-item-7" class="copy-content">【1. 法規制（風営法・旅館業法・消防法）への完全適合と安全補償体制】
+個室型レンタルスペースで懸念される法規制および安全リスクに対し、開業前より以下のハード・ソフト両面の対策を徹底する。
+・風営法・旅館業法対策：室内からの完全施錠（内鍵固定）を設けない構造とし、防音ドアの一部に廊下から室内状況を確認できる防音複層ガラス小窓を配置。寝具の提供や宿泊・滞在行為を利用規約で厳격に禁止し、純粋な「IT機器・ワークスペース時間貸し」として所轄警察署・保健所へ事前照会を行う。
+・消防法・賠償責任保険：天井面には不燃材料を採用し、各個室に連動型煙感知器・誘導灯を設置。またVRプレイ中の転倒や機器破損に備え、壁・床全面の衝撃吸収クッション化に加え「施設所有（管理）者賠償責任保険」および「動産総合保険（月1.5万円）」へ加入し、利用者と店舗双方のリスクを完全にカバーする。
+
+【2. 学生・若年層のリアルな痛みを解決する「高コスパ×高収益」の現実解】
+従来のVRスタジオは「1時間1.5万円以上」と高嶺の花であったが、本プランは「24時間スマートロック無人運営」と「機器持ち込み／レンタル選択制」により、深夜パック実質300円/時〜という学生でも毎週通える価格帯を実現した。それでいて初期投資400万円を約6.5ヶ月で回収（営業利益率48.9%）できる、極めて実現可能性の高いビジネスモデルである。</pre>
+      </div>
+
+      <!-- 項目8 -->
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">８．事業試算表（審査用紙内の記載文）</span>
+          <button class="copy-btn" onclick="copyText('doc-item-8', this)">📋 項目8をコピー</button>
+        </div>
+        <pre id="doc-item-8" class="copy-content">別紙、事業試算表（エクセルシート：bpc_jigyoushisan2026.xls）を添付いたします。
+【1店舗あたり基準試算サマリー（標準稼働率45%：1日10.8時間稼働）】
+・資本金（開業資金総額）：5,000,000円（うち初期投資計 4,000,000円 ／ 初期運転資金 1,000,000円）
+・月間売上合計：1,256,400円（年商換算 15,076,800円）
+・月間経費合計：641,538円（年間経費 7,698,456円）
+・月間営業利益：614,862円（年間営業利益 7,378,344円 ／ 営業利益率 48.9% ／ 初期投資回収期間 約6.5ヶ月）</pre>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         PART 2: 事業試算表 (bpc_jigyoushisan2026.xls) セル完全一致コピペ表
+    =========================================== -->
+    <div class="section-card">
+      <h2>📊 2. 事業試算表（bpc_jigyoushisan2026.xls）セル完全一致コピペシート</h2>
+      <p>公式Excelファイル（<code>bpc_jigyoushisan2026.xls</code>）の実際のセル番地（<code>B5:C17</code>、<code>E8:K14</code>、<code>M8:S24</code>）と1対1で対応しています。Excelの白い入力セルにそのまま数値を貼り付けてください（灰色の計・売上・経費・利益セルはExcel側の自動計算式で算出されます）。</p>
+
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchExcelMode('monthly', this)">📅 月次基準（1ヶ月あたり試算：推奨）</button>
+        <button class="tab-btn" onclick="switchExcelMode('annual', this)">📆 年次基準（1年間＝12ヶ月換算試算）</button>
+      </div>
+
+      <div class="callout" style="margin-top:0;">
+        <strong>セル <code>C2</code>（ビジネスプラン名）：</strong> <code>防音VR個室V-Room</code>
+        <button class="copy-btn inline-copy" onclick="copyRaw('防音VR個室V-Room', this)">📋 コピー</button>
+      </div>
+
+      <div class="grid-2">
+        <!-- 左表：初期投資 (B4:C17) -->
+        <div class="table-container">
+          <h3>① 左表：初期投資（セル B5〜C17）単位：円</h3>
+          <table class="excel-table">
+            <thead>
+              <tr>
+                <th>セル</th>
+                <th>項目名（B列）</th>
+                <th>入力金額（C列）</th>
+                <th>コピー</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>C5</code></td>
+                <td><strong>資本金</strong><br><small>自己資金＋創業融資等</small></td>
+                <td class="num-cell">5,000,000</td>
+                <td><button class="copy-btn sm" onclick="copyRaw('5000000', this)">📋 数値</button></td>
+              </tr>
+              <tr>
+                <td><code>C7</code></td>
+                <td><strong>物件取得費</strong><br><small>敷金3ヶ月・礼金・仲介料・前家賃</small></td>
+                <td class="num-cell">1,500,000</td>
+                <td><button class="copy-btn sm" onclick="copyRaw('1500000', this)">📋 数値</button></td>
+              </tr>
+              <tr>
+                <td><code>C8</code></td>
+                <td><strong>設備費</strong><br><small>防音クッション施工110万＋VR/PC機材100万</small></td>
+                <td class="num-cell">2,100,000</td>
+                <td><button class="copy-btn sm" onclick="copyRaw('2100000', this)">📋 数値</button></td>
+              </tr>
+              <tr>
+                <td><code>C9</code></td>
+                <td><strong>開発費</strong><br><small>予約・スマートロックPIN自動連携構築</small></td>
+                <td class="num-cell">200,000</td>
+                <td><button class="copy-btn sm" onclick="copyRaw('200000', this)">📋 数値</button></td>
+              </tr>
+              <tr>
+                <td><code>C10</code></td>
+                <td><strong>開業費</strong><br><small>10Gbps光引込・防犯カメラ・初期広報</small></td>
+                <td class="num-cell">200,000</td>
+                <td><button class="copy-btn sm" onclick="copyRaw('200000', this)">📋 数値</button></td>
+              </tr>
+              <tr class="highlight-cell">
+                <td><code>C15</code></td>
+                <td><strong>計（自動計算：<code>=SUM(C7:C14)</code>）</strong></td>
+                <td class="num-cell">4,000,000</td>
+                <td><span class="auto-badge">自動計算</span></td>
+              </tr>
+              <tr class="highlight-cell">
+                <td><code>C17</code></td>
+                <td><strong>初期運転資金（自動：<code>=C5-C15</code>）</strong></td>
+                <td class="num-cell">1,000,000</td>
+                <td><span class="auto-badge">自動計算</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 中央表：売上 (E5:K27) -->
+        <div class="table-container">
+          <h3 id="rev-table-title">② 中央表：売上（セル E8〜K14・月次基準）単位：円</h3>
+          <table class="excel-table">
+            <thead>
+              <tr>
+                <th>行</th>
+                <th>品名・サービス名（E列）</th>
+                <th>単価（G列）</th>
+                <th>量（I列）</th>
+                <th>売上（K列：自動）</th>
+              </tr>
+            </thead>
+            <tbody id="excel-rev-body">
+              <!-- JSで月次/年次切替 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 右表：経費 (M5:V27) -->
+      <div class="table-container" style="margin-top:20px;">
+        <h3 id="exp-table-title">③ 右表：経費・利益（セル M8〜V27・月次基準）単位：円</h3>
+        <table class="excel-table">
+          <thead>
+            <tr>
+              <th>行</th>
+              <th>項目（M列）</th>
+              <th>単価（O列）</th>
+              <th>量（Q列）</th>
+              <th>経費（S列：自動）</th>
+            </tr>
+          </thead>
+          <tbody id="excel-exp-body">
+            <!-- JSで月次/年次切替 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         PART 3: 参加申込書 (bpc_sankamousikomi2026.doc) コピペ欄
+    =========================================== -->
+    <div class="section-card">
+      <h2>📝 3. 参加申込書（bpc_sankamousikomi2026.doc）コピペ欄</h2>
+      <p>参加申込書内の「ビジネスプラン名」および「生成AI利用に関するアンケート（審査評価には影響しないアンケート欄）」のそのまま使える記入文例です。</p>
+
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">参加申込書：ビジネスプラン名</span>
+          <button class="copy-btn" onclick="copyText('app-plan-name', this)">📋 コピー</button>
+        </div>
+        <pre id="app-plan-name" class="copy-content">防音VR個室V-Room</pre>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">生成AIアンケート 設問３：使用した生成AIの名称</span>
+          <button class="copy-btn" onclick="copyText('app-ai-q3', this)">📋 コピー</button>
+        </div>
+        <pre id="app-ai-q3" class="copy-content">Google Gemini / ChatGPT</pre>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">生成AIアンケート 設問４：１で「はい」と回答した方にお聞きします。生成AIはどのように使用しましたか</span>
+          <button class="copy-btn" onclick="copyText('app-ai-q4', this)">📋 コピー</button>
+        </div>
+        <pre id="app-ai-q4" class="copy-content">自身のVR体験および住環境課題から着想した「防音VR個室レンタルスペース」のビジネスアイデアを基に、公的統計データ（矢野経済研究所のメタバース市場予測、総務省の住宅・土地統計調査等）の調査整理、料金プラン別の収支シミュレーション（損益分岐点・感度分析）の検算、および審査書類の文章構成・推敲の補助として活用しました。</pre>
+      </div>
+
+      <div class="copy-block">
+        <div class="copy-header">
+          <span class="copy-title">生成AIアンケート 設問５：２で「はい」と回答した方にお聞きします。生成AIは主にどのような用途に利用していますか</span>
+          <button class="copy-btn" onclick="copyText('app-ai-q5', this)">📋 コピー</button>
+        </div>
+        <pre id="app-ai-q5" class="copy-content">プログラミング学習におけるコードレビュー・エラー原因の調査、企画書・プレゼンテーション資料の構成案作成、および業界動向・市場データの情報収集や自己PR文章の推敲などに活用しています。</pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 新規ビジネス企画課題提出用資料 - 防音VR個室V-Room</p>
+    </footer>
+  </div>
+
+  <script>
+    // テーマ切替
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const htmlElement = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+
+    function applyTheme(theme) {
+      htmlElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeText.textContent = theme === 'dark' ? 'ライトモードに切替' : 'ダークモードに切替';
+    }
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) applyTheme('dark');
+    else applyTheme('light');
+
+    toggleBtn.addEventListener('click', () => {
+      const current = htmlElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // テキストコピー機能
+    function copyText(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      copyRaw(text, btn);
+    }
+
+    function copyRaw(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ コピー完了!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('copied');
+        }, 1800);
+      });
+    }
+
+    // Excel表データ（月次 / 年次切替）
+    const excelData = {
+      monthly: {
+        revTitle: '② 中央表：売上（セル E8〜K14・月次1ヶ月基準）単位：円',
+        expTitle: '③ 右表：経費・利益（セル M8〜V27・月次1ヶ月基準）単位：円',
+        rev: [
+          { row: 8, name: 'ヘビー室利用料（防音・PC・常設BS・1室平均単価）', price: 1800, qty: 324, note: '10.8h×30日' },
+          { row: 10, name: 'ライト室利用料（クッション個室・2室平均単価）', price: 900, qty: 648, note: '10.8h×2室×30日' },
+          { row: 12, name: '衛生シリコンカバー買い切り販売・追加機器貸出', price: 500, qty: 150, note: '月150件' },
+          { row: 14, name: '室内ドリンク・アメニティ物販（実質粗利分）', price: 150, qty: 100, note: '月100本' }
+        ],
+        exp: [
+          { row: 8, name: '店舗家賃・共益費（駅近約14坪・3室）', price: 300000, qty: 1 },
+          { row: 10, name: '電気・水道光熱費（PC・空調24h稼働：1,859kWh）', price: 75000, qty: 1 },
+          { row: 12, name: '通信費（法人向け10Gbps専有光回線・プロバイダ）', price: 20000, qty: 1 },
+          { row: 14, name: 'オンライン予約・事前決済システム手数料（売上の4.5%）', price: 56538, qty: 1 },
+          { row: 16, name: '定期巡回清掃・UV除菌管理外注費（週5回巡回）', price: 5500, qty: 20 },
+          { row: 18, name: 'VR機器保守更新積立金（HMD・トラッカー摩耗更新）', price: 65000, qty: 1 },
+          { row: 20, name: '施設所有管理者賠償責任保険・動産総合保険', price: 15000, qty: 1 }
+        ]
+      },
+      annual: {
+        revTitle: '② 中央表：売上（セル E8〜K14・年次12ヶ月換算基準）単位：円',
+        expTitle: '③ 右表：経費・利益（セル M8〜V27・年次12ヶ月換算基準）単位：円',
+        rev: [
+          { row: 8, name: 'ヘビー室利用料（防音・PC・常設BS・1室年間）', price: 1800, qty: 3888, note: '324h×12ヶ月' },
+          { row: 10, name: 'ライト室利用料（クッション個室・2室年間）', price: 900, qty: 7776, note: '648h×12ヶ月' },
+          { row: 12, name: '衛生シリコンカバー買い切り販売・追加機器貸出', price: 500, qty: 1800, note: '年1,800件' },
+          { row: 14, name: '室内ドリンク・アメニティ物販（実質粗利分）', price: 150, qty: 1200, note: '年1,200本' }
+        ],
+        exp: [
+          { row: 8, name: '店舗家賃・共益費（駅近約14坪・12ヶ月）', price: 300000, qty: 12 },
+          { row: 10, name: '電気・水道光熱費（PC・空調24h稼働・12ヶ月）', price: 75000, qty: 12 },
+          { row: 12, name: '通信費（法人向け10Gbps専有光回線・12ヶ月）', price: 20000, qty: 12 },
+          { row: 14, name: 'オンライン予約・事前決済システム手数料（4.5%×12ヶ月）', price: 56538, qty: 12 },
+          { row: 16, name: '定期巡回清掃・UV除菌管理外注費（年間240回巡回）', price: 5500, qty: 240 },
+          { row: 18, name: 'VR機器保守更新積立金（HMD・トラッカー更新・12ヶ月）', price: 65000, qty: 12 },
+          { row: 20, name: '施設所有管理者賠償責任保険・動産総合保険（12ヶ月）', price: 15000, qty: 12 }
+        ]
+      }
+    };
+
+    function switchExcelMode(mode, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const d = excelData[mode];
+      document.getElementById('rev-table-title').textContent = d.revTitle;
+      document.getElementById('exp-table-title').textContent = d.expTitle;
+
+      let revSum = 0;
+      const revHtml = d.rev.map(r => {
+        const sub = r.price * r.qty;
+        revSum += sub;
+        return `<tr>
+          <td><code>${r.row}行</code></td>
+          <td>${r.name} <button class="copy-btn sm" onclick="copyRaw('${r.name}', this)">📋 品名</button></td>
+          <td class="num-cell">${r.price.toLocaleString()} <button class="copy-btn sm" onclick="copyRaw('${r.price}', this)">📋</button></td>
+          <td class="num-cell">${r.qty.toLocaleString()} <small>(${r.note})</small> <button class="copy-btn sm" onclick="copyRaw('${r.qty}', this)">📋</button></td>
+          <td class="num-cell"><strong>${sub.toLocaleString()}</strong></td>
+        </tr>`;
+      }).join('') + `<tr class="highlight-cell">
+        <td><code>K27</code></td>
+        <td colspan="3"><strong>売上合計（自動計算：<code>=SUM(K8:K14)</code>）</strong></td>
+        <td class="num-cell"><strong>${revSum.toLocaleString()} 円</strong></td>
+      </tr>`;
+      document.getElementById('excel-rev-body').innerHTML = revHtml;
+
+      let expSum = 0;
+      const expHtml = d.exp.map(r => {
+        const sub = r.price * r.qty;
+        expSum += sub;
+        return `<tr>
+          <td><code>${r.row}行</code></td>
+          <td>${r.name} <button class="copy-btn sm" onclick="copyRaw('${r.name}', this)">📋 項目</button></td>
+          <td class="num-cell">${r.price.toLocaleString()} <button class="copy-btn sm" onclick="copyRaw('${r.price}', this)">📋</button></td>
+          <td class="num-cell">${r.qty.toLocaleString()} <button class="copy-btn sm" onclick="copyRaw('${r.qty}', this)">📋</button></td>
+          <td class="num-cell"><strong>${sub.toLocaleString()}</strong></td>
+        </tr>`;
+      }).join('') + `<tr class="highlight-cell">
+        <td><code>S27 / V27</code></td>
+        <td colspan="2"><strong>経費合計（<code>S27</code>）：${expSum.toLocaleString()} 円</strong></td>
+        <td colspan="2"><strong>利益（<code>V27 = K27 - S27</code>）：+${(revSum - expSum).toLocaleString()} 円（利益率 48.9%）</strong></td>
+      </tr>`;
+      document.getElementById('excel-exp-body').innerHTML = expHtml;
+    }
+
+    // =========================================================
+    // Canvas 図解画像ジェネレーター（全3図をPNG <img>へ自動変換）
+    // =========================================================
+    function roundRect(ctx, x, y, w, h, r, fill, stroke, lw = 2) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+      if (stroke) { ctx.lineWidth = lw; ctx.strokeStyle = stroke; ctx.stroke(); }
+    }
+
+    function drawSchemeDiagram() {
+      const c = document.getElementById('canvas-scheme');
+      const ctx = c.getContext('2d');
+      const font = '"Hiragino Kaku Gothic ProN", "Meiryo", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      // タイトル
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 24px ${font}`;
+      ctx.textAlign = 'center';
+      ctx.fillText('【図1】防音VR個室「V-Room」ビジネススキーム図（ヒト・モノ・カネ・情報の流れ）', 600, 42);
+
+      // 上段3ボックス（パートナー）
+      const topBoxes = [
+        { x: 40, title: '① 物件オーナー・通信キャリア', l1: '・駅近ビル（約14坪/45㎡・3室構成）', l2: '・法人10Gbps専有光回線＋Wi-Fi 6E', l3: '【支払】家賃30万円＋光熱通信9.5万円/月' },
+        { x: 420, title: '② VR・PC機材 / 衛生品サプライヤー', l1: '・ハイエンドPC・Quest 3・常設BS', l2: '・衛生シリコンカバー卸（原価100円/個）', l3: '【支払】初期機材100万円＋保守積立6.5万円/月' },
+        { x: 800, title: '③ 専門清掃・決済・損保パートナー', l1: '・週5回巡回清掃・UV-C除菌・消耗品補充', l2: '・Web事前決済基盤・施設賠償責任保険', l3: '【支払】清掃11万＋決済5.7万＋保険1.5万円/月' }
+      ];
+      topBoxes.forEach(b => {
+        roundRect(ctx, b.x, 70, 360, 150, 14, '#f8fafc', '#64748b', 2.5);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = `bold 18px ${font}`;
+        ctx.fillText(b.title, b.x + 180, 104);
+        ctx.fillStyle = '#334155';
+        ctx.font = `15px ${font}`;
+        ctx.fillText(b.l1, b.x + 180, 136);
+        ctx.fillText(b.l2, b.x + 180, 162);
+        ctx.fillStyle = '#2563eb';
+        ctx.font = `bold 15px ${font}`;
+        ctx.fillText(b.l3, b.x + 180, 194);
+      });
+
+      // 矢印1
+      ctx.fillStyle = '#1d4ed8';
+      ctx.font = `bold 17px ${font}`;
+      ctx.fillText('▲ 固定費・業務委託費の支払（月64.2万円） ｜ ▼ 空間・10G回線・清潔な機材・決済基盤の供給', 600, 252);
+
+      // 中段（V-Room 中核ボックス）
+      roundRect(ctx, 50, 275, 1100, 165, 16, '#e0f2fe', '#0284c7', 3.5);
+      ctx.fillStyle = '#0369a1';
+      ctx.font = `bold 22px ${font}`;
+      ctx.fillText('【中核】当事業：VR特化型レンタルスペース「V-Room」（1店舗3室・24時間無人スマート運営）', 600, 315);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 16px ${font}`;
+      ctx.fillText('・ヘビー室（1室：6〜10畳防音・ハイエンドPC・天井常設ベースステーション・10Gbps有線LAN）', 600, 352);
+      ctx.fillText('・ライト室（2室：3〜4畳全面クッション壁・Meta Quest 3・高速Wi-Fi 6E）', 600, 380);
+      ctx.fillStyle = '#0284c7';
+      ctx.font = `bold 16px ${font}`;
+      ctx.fillText('・Web予約連動スマートロック（部屋扉＆レンタル機材庫のPIN自動発行）＋ 波長254nm UV-C除菌保管庫', 600, 412);
+
+      // 矢印2
+      ctx.fillStyle = '#047857';
+      ctx.font = `bold 17px ${font}`;
+      ctx.fillText('▼ 安全・防音・清潔なVR空間＋選べる機材提供 ｜ ▲ 利用料・パック・物販売上（標準月商125.6万円／営業利益61.5万円）', 600, 472);
+
+      // 下段2ボックス（顧客セグメント）
+      roundRect(ctx, 50, 495, 530, 195, 14, '#f0fdf4', '#16a34a', 2.5);
+      ctx.fillStyle = '#15803d';
+      ctx.font = `bold 19px ${font}`;
+      ctx.fillText('【顧客A】ライト層・自前機器持込層（平日昼〜夕方中心）', 315, 530);
+      ctx.fillStyle = '#1e293b';
+      ctx.font = `15px ${font}`;
+      ctx.fillText('・対象：VR未経験者、HMD購入検討者、自前Quest持込者、学生', 315, 562);
+      ctx.fillText('・機器持込（空間のみ）：600円/h（3h 1,500円 / 深夜8h 2,400円）', 315, 590);
+      ctx.fillText('・手ぶらレンタル（Quest3込）：1,000円/h（3h 2,500円 / 深夜3,800円）', 315, 618);
+      ctx.fillStyle = '#15803d';
+      ctx.font = `bold 15px ${font}`;
+      ctx.fillText('・衛生シリコンカバー買い切り：500円/個（次回マイカバー持参0円）', 315, 650);
+
+      roundRect(ctx, 620, 495, 530, 195, 14, '#eef2ff', '#4f46e5', 2.5);
+      ctx.fillStyle = '#4338ca';
+      ctx.font = `bold 19px ${font}`;
+      ctx.fillText('【顧客B】ヘビー層・配信者層（夜間・深夜・休日中心）', 885, 530);
+      ctx.fillStyle = '#1e293b';
+      ctx.font = `15px ${font}`;
+      ctx.fillText('・対象：VRChat住民、VRダンサー、VTuber配信・収録、Vket参加層', 885, 562);
+      ctx.fillText('・機器持込（防音＋PC＋常設BS）：1,200円/h（3h 3,000円 / 深夜4,500円）', 885, 590);
+      ctx.fillText('・手ぶらフルレンタル（フルトラ一式込）：2,000円/h（3h 5,000円）', 885, 618);
+      ctx.fillStyle = '#4338ca';
+      ctx.font = `bold 15px ${font}`;
+      ctx.fillText('・単発トラッカー貸出：+500円/回 ＋ 室内ドリンク物販', 885, 650);
+
+      document.getElementById('img-scheme').src = c.toDataURL('image/png');
+    }
+
+    function drawMarketDiagram() {
+      const c = document.getElementById('canvas-market');
+      const ctx = c.getContext('2d');
+      const font = '"Hiragino Kaku Gothic ProN", "Meiryo", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 22px ${font}`;
+      ctx.textAlign = 'center';
+      ctx.fillText('【図2】国内メタバース市場の成長予測（矢野経済研究所）＆ 競合ポジショニングマップ', 600, 38);
+
+      // 左側：国内メタバース市場棒グラフ
+      roundRect(ctx, 30, 60, 540, 530, 12, '#f8fafc', '#cbd5e1', 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 18px ${font}`;
+      ctx.fillText('① 国内メタバース市場規模推移（約6.8倍へ急拡大）', 300, 95);
+
+      const data = [
+        { y: '2023実', v: 1863 },
+        { y: '2024見込', v: 2750 },
+        { y: '2025予', v: 4400 },
+        { y: '2026予', v: 7500 },
+        { y: '2027予', v: 12000 },
+        { y: '2028予測', v: 18700 }
+      ];
+      const baseY = 510;
+      const maxH = 340;
+      ctx.strokeStyle = '#cbd5e1';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(70, baseY);
+      ctx.lineTo(540, baseY);
+      ctx.stroke();
+
+      data.forEach((d, i) => {
+        const bx = 85 + i * 74;
+        const bh = (d.v / 18700) * maxH;
+        const by = baseY - bh;
+        ctx.fillStyle = i === 5 ? '#2563eb' : '#60a5fa';
+        ctx.fillRect(bx, by, 48, bh);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = `bold 13px ${font}`;
+        ctx.fillText(d.v.toLocaleString() + '億', bx + 24, by - 8);
+        ctx.font = `13px ${font}`;
+        ctx.fillText(d.y, bx + 24, baseY + 24);
+      });
+      ctx.fillStyle = '#1e40af';
+      ctx.font = `bold 14px ${font}`;
+      ctx.fillText('出典：矢野経済研究所（2024年調査）｜ VRChat日本シェア世界1位（37%）', 300, 568);
+
+      // 右側：2軸ポジショニングマップ
+      roundRect(ctx, 600, 60, 570, 530, 12, '#f8fafc', '#cbd5e1', 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 18px ${font}`;
+      ctx.fillText('② 競合ポジショニングマップ（可動域 × 手頃さ・自由度）', 885, 95);
+
+      // 軸の描画
+      const cx = 885, cy = 330;
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(640, cy); ctx.lineTo(1130, cy);
+      ctx.moveTo(cx, 130); ctx.lineTo(cx, 530);
+      ctx.stroke();
+
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 14px ${font}`;
+      ctx.fillText('▲ 身体の可動域が広い・防音・フルトラ環境完備', cx, 122);
+      ctx.fillText('▼ 狭い・着座のみ・衝突や騒音リスク大', cx, 552);
+      ctx.fillText('◀ 高額（数万円/h）', 705, cy - 10);
+      ctx.fillText('個人の日常利用に手頃・自由度高 ▶', 1015, cy - 10);
+
+      // プロット要素
+      const plots = [
+        { x: 1030, y: 195, r: 95, bg: '#dcfce7', ec: '#16a34a', title: '★当事業「V-Room」', sub: '600〜2,000円/h（深夜300円/h〜）\n防音クッション・常設BS・衛生カバー' },
+        { x: 730, y: 205, r: 78, bg: '#f1f5f9', ec: '#64748b', title: '業務用撮影スタジオ', sub: '15,000〜30,000円/h\n広大だが個人には高額すぎる' },
+        { x: 755, y: 425, r: 78, bg: '#f1f5f9', ec: '#64748b', title: '商業VR施設', sub: '約3,000円/15分（1.2万円/h相当）\n指定ゲームのみ・VRChat不可' },
+        { x: 1015, y: 440, r: 78, bg: '#f1f5f9', ec: '#64748b', title: 'ネットカフェ個室', sub: '500〜700円/h\n約1畳で着座のみ・センサー無' },
+        { x: 895, y: 455, r: 75, bg: '#fef2f2', ec: '#ef4444', title: '自宅（単身20.3㎡）', sub: '初期機材35万円＋家賃\n家具衝突・深夜騒音で動けない' }
+      ];
+      plots.forEach(p => {
+        roundRect(ctx, p.x - p.r, p.y - 38, p.r * 2, 76, 10, p.bg, p.ec, 2.5);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = `bold 14px ${font}`;
+        ctx.fillText(p.title, p.x, p.y - 12);
+        ctx.fillStyle = '#334155';
+        ctx.font = `12px ${font}`;
+        const lines = p.sub.split('\n');
+        ctx.fillText(lines[0], p.x, p.y + 10);
+        if (lines[1]) ctx.fillText(lines[1], p.x, p.y + 28);
+      });
+
+      document.getElementById('img-market').src = c.toDataURL('image/png');
+    }
+
+    function drawRoadmapDiagram() {
+      const c = document.getElementById('canvas-roadmap');
+      const ctx = c.getContext('2d');
+      const font = '"Hiragino Kaku Gothic ProN", "Meiryo", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, c.width, c.height);
+
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `bold 22px ${font}`;
+      ctx.textAlign = 'center';
+      ctx.fillText('【図3】ビジネスプランの将来計画・展望（1年目〜5年後・10年後の数値目標と成長戦略）', 600, 40);
+
+      const steps = [
+        { x: 35, w: 265, phase: 'Phase 1-2（1〜1.5年目）', title: '実証＆首都圏ドミナント', kpi1: '直営 1〜3拠点', kpi2: '年商 1,508万〜4,520万円', desc1: '・秋葉原1号店（約6.5ヶ月回収）', desc2: '・新宿/池袋へ直営展開', desc3: '・Vket連動オフ会・学生学割', bg: '#f8fafc', ec: '#64748b' },
+        { x: 325, w: 265, phase: 'Phase 3（3年目目標）', title: '無人FCパッケージ展開', kpi1: '全国 15拠点', kpi2: 'グループ年商 2.25億円', desc1: '・東名阪・主要政令市へ展開', desc2: '・遊休ビルオーナー向けFC供給', desc3: '・初期400万円パッケージ化', bg: '#f0f9ff', ec: '#0284c7' },
+        { x: 615, w: 265, phase: 'Phase 4（5年後目標）', title: '全国主要都市網羅', kpi1: '全国 50拠点', kpi2: 'グループ年商 7.5億円', desc1: '・直営10店＋FC40店体制', desc2: '・累計会員30,000名突破', desc3: '・VTuber事務所公式収録提携', bg: '#eff6ff', ec: '#2563eb' },
+        { x: 905, w: 265, phase: 'Phase 5（10年後目標）', title: 'XR社会インフラ化', kpi1: '全国 150拠点', kpi2: 'グループ年商 22.5億円', desc1: '・企業XR遠隔研修拠点（BtoB）', desc2: '・自治体メタバース教育・不登校支援', desc3: '・法人/行政契約500団体', bg: '#eef2ff', ec: '#4f46e5' }
+      ];
+
+      steps.forEach((s, idx) => {
+        roundRect(ctx, s.x, 70, s.w, 250, 14, s.bg, s.ec, 3);
+        ctx.fillStyle = s.ec;
+        ctx.font = `bold 15px ${font}`;
+        ctx.fillText(s.phase, s.x + s.w / 2, 100);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = `bold 18px ${font}`;
+        ctx.fillText(s.title, s.x + s.w / 2, 128);
+        roundRect(ctx, s.x + 15, 142, s.w - 30, 64, 8, '#ffffff', s.ec, 1.5);
+        ctx.fillStyle = '#dc2626';
+        ctx.font = `bold 18px ${font}`;
+        ctx.fillText(s.kpi1, s.x + s.w / 2, 168);
+        ctx.fillStyle = '#1d4ed8';
+        ctx.font = `bold 16px ${font}`;
+        ctx.fillText(s.kpi2, s.x + s.w / 2, 194);
+
+        ctx.fillStyle = '#334155';
+        ctx.font = `14px ${font}`;
+        ctx.fillText(s.desc1, s.x + s.w / 2, 234);
+        ctx.fillText(s.desc2, s.x + s.w / 2, 260);
+        ctx.fillText(s.desc3, s.x + s.w / 2, 286);
+
+        if (idx < 3) {
+          ctx.fillStyle = '#2563eb';
+          ctx.font = `bold 24px ${font}`;
+          ctx.fillText('▶', s.x + s.w + 12, 195);
+        }
+      });
+
+      // 下段：事業継続性（サステナビリティ）まとめバー
+      roundRect(ctx, 35, 345, 1135, 205, 14, '#f0fdf4', '#16a34a', 2.5);
+      ctx.fillStyle = '#15803d';
+      ctx.font = `bold 19px ${font}`;
+      ctx.fillText('【事業の継続性（サステナビリティ）と長期安定収益の3大根拠】', 600, 380);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = `16px ${font}`;
+      ctx.fillText('① 圧倒的に低い損益分岐点（BEP稼働率 21.5%＝1日5.2h）：24時間無人運営により固定費を極小化。稼働25%の悲観時でも毎月黒字維持。', 600, 418);
+      ctx.fillText('② 計画的な機材更新積立（月6.5万円/店）：年間78万円の保守更新積立金を経費計上し、追加融資なしで2〜3年周期の最新HMD・PCへ更新。', 600, 452);
+      ctx.fillText('③ BtoC×BtoB×BtoGのハイブリッド稼働：夜間・休日のエンタメ需要に加え、平日昼間は企業XR研修・自治体教育利用で24時間稼働を最大化。', 600, 486);
+      ctx.fillStyle = '#1e40af';
+      ctx.font = `bold 15px ${font}`;
+      ctx.fillText('国内メタバース市場1兆8,700億円（2028年度予測）の成長波に乗り、日本の狭小住宅課題を解決する社会インフラへ成長', 600, 524);
+
+      document.getElementById('img-roadmap').src = c.toDataURL('image/png');
+    }
+
+    // Canvas画像をクリップボードにPNGコピー（Wordへ直接Ctrl+V可能）
+    function copyCanvasImage(canvasId, btn) {
+      const canvas = document.getElementById(canvasId);
+      canvas.toBlob(blob => {
+        if (navigator.clipboard && window.ClipboardItem) {
+          const item = new ClipboardItem({ 'image/png': blob });
+          navigator.clipboard.write([item]).then(() => {
+            const orig = btn.innerHTML;
+            btn.innerHTML = '✅ 画像をコピーしました！（WordでCtrl+V貼付可）';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.innerHTML = orig;
+              btn.classList.remove('copied');
+            }, 2500);
+          }).catch(() => {
+            alert('ブラウザの制限により直接コピーできない場合は、下の画像を右クリックして「画像をコピー」を選択してください。');
+          });
+        } else {
+          alert('下の画像を右クリックして「画像をコピー」を選択してください。');
+        }
+      }, 'image/png');
+    }
+
+    function downloadCanvasImage(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      switchExcelMode('monthly');
+      drawSchemeDiagram();
+      drawMarketDiagram();
+      drawRoadmapDiagram();
+    });
+  </script>
+</body>
+</html>
