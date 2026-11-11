@@ -350,10 +350,26 @@ function drawMarketDiagram() {
     ctx.fillText(b.year, bx + bw / 2, chartBaseY + 20, bw + 20);
   });
 
-  roundRect(ctx, 360, 130, 205, 34, 6, '#eff6ff', '#2563eb', 1.5);
+  // 2028年度バー(x=446..531, y=130..390)との重なりを防ぐため左上空白域へ配置
+  roundRect(ctx, 68, 135, 230, 36, 6, '#eff6ff', '#2563eb', 1.5);
   ctx.fillStyle = '#1e40af';
-  ctx.font = `bold 13px ${font}`;
-  ctx.fillText('約6.8倍急拡大（年平均+61.5%）', 462, 152, 195);
+  ctx.font = `bold 13px ${font}`; ctx.fillText('約6.8倍急拡大（年平均+61.5\%）', 183, 158, 215); >>>> <<<< const compData = [ { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 買い切り+除菌', price: '600〜2,000円/h', hl: true }, { name: '自宅単身住宅', space: '× 家具衝突・騒音', equip: '△ 初期30〜40万', clean: '◎ 個人所有', price: '家賃負担', hl: false }, ==== const compData = [ { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 有人清掃+除菌', price: '600〜2,000円/h', hl: true }, { name: '自宅単身住宅', space: '× 家具衝突・騒音', equip: '△ 初期30〜40万', clean: '◎ 個人所有', price: '家賃負担', hl: false }, >>>> <<<< ctx.fillStyle = '#059669'; ctx.font = `bold 12.5px ${font}`;
+  ctx.fillText('★買い切りシリコンカバーによる衛生対策で共用VRの最大の壁を突破', 890, 548, 500);
+
+  const img = document.getElementById('img-market');
+====
+  ctx.fillStyle = '#059669';
+  ctx.font = `bold 12.5px ${font}`; ctx.fillText('★専任スタッフの利用間清掃＋買い切りカバー＋UV除菌で衛生の壁を突破', 890, 548, 500);  const img = document.getElementById('img-market'); >>>> <<<< // 棒2: ヘビー室1室＋物販 67.3万円 ctx.fillStyle = '#4f46e5'; ctx.fillRect(250, baseY - 134, 110, 134); ctx.fillStyle = '#10b981'; ctx.fillRect(250, baseY - 155, 110, 21); ctx.fillStyle = '#0f172a'; ctx.font = `bold 14px ${font}`;
+  ctx.fillText('ヘビー1室＋物販', 305, baseY + 22);
+====
+  // 棒2: ヘビー室1室＋物販 67.3万円
+  ctx.fillStyle = '#4f46e5';
+  ctx.fillRect(250, baseY - 134, 110, 134);
+  ctx.fillStyle = '#10b981';
+  ctx.fillRect(250, baseY - 155, 110, 21);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = `bold 12px ${font}`; ctx.fillText('ヘビー1室 58.3万', 305, baseY - 62); ctx.fillStyle = '#0f172a'; ctx.font = `bold 14px ${font}`;
+  ctx.fillText('ヘビー1室＋物販', 305, baseY + 22);
 
   roundRect(ctx, 45, 430, 525, 145, 8, '#ffffff', '#cbd5e1', 1.5);
   ctx.fillStyle = '#0f172a';

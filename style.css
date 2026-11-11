@@ -573,6 +573,7 @@ footer {
     --table-highlight-bg: #e0f2fe;
     --table-highlight-text: #0369a1;
   }
+  * { transition: none !important; }
   body { background: #ffffff; color: #000000; padding: 0; }
   .theme-switch-wrapper, .global-nav, .copy-btn, .tab-bar, .figure-actions { display: none; }
   .section-card { box-shadow: none; }
