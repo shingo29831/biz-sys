@@ -188,6 +188,7 @@
 <body>
   <div class="container">
     <div class="toolbar">
+      <a href="index.html" class="btn" style="text-decoration:none;">🏠 1. 事業構想トップ（index.html）</a>
       <a href="entry.html" class="btn" style="text-decoration:none;border-color:var(--primary);color:var(--primary);">📋 応募書類コピペ＆図解画像ページ（entry.html）へ移動</a>
       <button id="theme-toggle" class="btn">🌙 ダークモード切替</button>
       <button onclick="window.print()" class="btn">🖨️ A4印刷 / PDF保存</button>
@@ -506,8 +507,8 @@
     const toggleBtn = document.getElementById('theme-toggle');
     let chartInstance = null;
 
-    function renderChart() {
-      const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    function renderChart(forceLight = false) {
+      const isDark = !forceLight && htmlEl.getAttribute('data-theme') === 'dark';
       const textColor = isDark ? '#f9fafb' : '#0f172a';
       const gridColor = isDark ? '#374151' : '#cbd5e1';
       const ctx = document.getElementById('longTermChart').getContext('2d');
@@ -569,7 +570,9 @@
       renderChart();
     });
 
-    window.addEventListener('DOMContentLoaded', renderChart);
+    window.addEventListener('DOMContentLoaded', () => renderChart(false));
+    window.addEventListener('beforeprint', () => renderChart(true));
+    window.addEventListener('afterprint', () => renderChart(false));
   </script>
 </body>
 </html>

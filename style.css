@@ -559,8 +559,22 @@ footer {
     --text-main: #000000;
     --text-sub: #334155;
     --border: #94a3b8;
+    --primary: #2563eb;
+    --callout-bg: #f8fafc;
+    --callout-border: #2563eb;
+    --header-bg: #0f172a;
+    --header-text: #ffffff;
+    --header-sub: #cbd5e1;
+    --badge-bg: #1e293b;
+    --badge-border: #475569;
+    --badge-text: #38bdf8;
+    --table-th: #f1f5f9;
+    --table-stripe: #f8fafc;
+    --table-highlight-bg: #e0f2fe;
+    --table-highlight-text: #0369a1;
   }
   body { background: #ffffff; color: #000000; padding: 0; }
-  .theme-switch-wrapper, .global-nav, .copy-btn, .tab-bar { display: none; }
-  .section-card { page-break-inside: avoid; box-shadow: none; }
+  .theme-switch-wrapper, .global-nav, .copy-btn, .tab-bar, .figure-actions { display: none; }
+  .section-card { box-shadow: none; }
+  .copy-block, .figure-box, .plan-box, .spec-card, .chart-card, .stat-card { page-break-inside: avoid; break-inside: avoid; }
 }

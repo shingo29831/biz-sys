@@ -258,6 +258,13 @@
 
     <div class="section-card">
       <h2>9. 各詳細ページへのショートカット</h2>
+      <a href="bpc2026_summary.html" class="page-link-card" style="border-color: var(--primary);">
+        <div>
+          <strong>📄 第23回BPC 審査用紙（項目1〜8）1枚統合サマリーシート（bpc2026_summary.html）を見る</strong>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--text-sub);">コンペ審査用紙の全設問（項目1〜8）・ビジネススキーム図・初期投資400万円＆3シナリオ試算表を1ページに凝縮したA4印刷対応シート</p>
+        </div>
+        <span style="font-size: 1.2rem;">→</span>
+      </a>
       <a href="entry.html" class="page-link-card" style="border-color: var(--primary);">
         <div>
           <strong>📋 5. 応募書類（Word 2種・Excel 1種）そのままコピペ＆図解画像シートを見る</strong>
@@ -304,8 +311,8 @@
 
     let roadmapChartInstance = null;
 
-    function getThemeColors() {
-      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+    function getThemeColors(forceLight = false) {
+      const isDark = !forceLight && htmlElement.getAttribute('data-theme') === 'dark';
       return {
         text: isDark ? '#f9fafb' : '#0f172a',
         subText: isDark ? '#9ca3af' : '#475569',
@@ -368,9 +375,9 @@
       });
     }
 
-    function updateChartsTheme() {
+    function updateChartsTheme(forceLight = false) {
       if (!roadmapChartInstance) return;
-      const colors = getThemeColors();
+      const colors = getThemeColors(forceLight);
       roadmapChartInstance.options.scales.x.ticks.color = colors.text;
       roadmapChartInstance.options.scales.x.grid.color = colors.grid;
       roadmapChartInstance.options.scales.yLocations.ticks.color = colors.subText;
@@ -399,6 +406,8 @@
     });
 
     window.addEventListener('DOMContentLoaded', initCharts);
+    window.addEventListener('beforeprint', () => updateChartsTheme(true));
+    window.addEventListener('afterprint', () => updateChartsTheme(false));
   </script>
 </body>
 </html>

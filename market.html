@@ -215,8 +215,8 @@
     let vrchatChart = null;
     let housingChart = null;
 
-    function getThemeColors() {
-      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+    function getThemeColors(forceLight = false) {
+      const isDark = !forceLight && htmlElement.getAttribute('data-theme') === 'dark';
       return {
         text: isDark ? '#f9fafb' : '#0f172a',
         subText: isDark ? '#9ca3af' : '#475569',
@@ -296,10 +296,10 @@
       });
     }
 
-    function updateChartsTheme() {
+    function updateChartsTheme(forceLight = false) {
       if (!marketChart || !vrchatChart || !housingChart) return;
-      const colors = getThemeColors();
-      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+      const colors = getThemeColors(forceLight);
+      const isDark = !forceLight && htmlElement.getAttribute('data-theme') === 'dark';
 
       marketChart.options.scales.x.ticks.color = colors.text;
       marketChart.options.scales.x.grid.color = colors.grid;
@@ -336,6 +336,8 @@
     });
 
     window.addEventListener('DOMContentLoaded', initCharts);
+    window.addEventListener('beforeprint', () => updateChartsTheme(true));
+    window.addEventListener('afterprint', () => updateChartsTheme(false));
   </script>
 </body>
 </html>

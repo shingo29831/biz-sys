@@ -336,8 +336,8 @@
     let capexChartInstance = null;
     let sensitivityChartInstance = null;
 
-    function getThemeColors() {
-      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+    function getThemeColors(forceLight = false) {
+      const isDark = !forceLight && htmlElement.getAttribute('data-theme') === 'dark';
       return {
         text: isDark ? '#f9fafb' : '#0f172a',
         subText: isDark ? '#9ca3af' : '#475569',
@@ -395,10 +395,10 @@
       });
     }
 
-    function updateChartsTheme() {
+    function updateChartsTheme(forceLight = false) {
       if (!capexChartInstance || !sensitivityChartInstance) return;
-      const colors = getThemeColors();
-      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+      const colors = getThemeColors(forceLight);
+      const isDark = !forceLight && htmlElement.getAttribute('data-theme') === 'dark';
 
       capexChartInstance.data.datasets[0].borderColor = isDark ? '#1f2937' : '#ffffff';
       capexChartInstance.options.plugins.legend.labels.color = colors.text;
@@ -430,6 +430,8 @@
     });
 
     window.addEventListener('DOMContentLoaded', initCharts);
+    window.addEventListener('beforeprint', () => updateChartsTheme(true));
+    window.addEventListener('afterprint', () => updateChartsTheme(false));
   </script>
 </body>
 </html>
