@@ -312,13 +312,13 @@ function drawMarketDiagram() {
   ctx.fillRect(0, 0, c.width, c.height);
 
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 22px ${font}`;
+  ctx.font = 'bold 22px ' + font;
   ctx.textAlign = 'center';
   ctx.fillText('【図2】国内メタバース市場の急拡大予測 ＆ 競合ポジショニング比較マトリクス', 600, 38);
 
   roundRect(ctx, 30, 60, 555, 535, 12, '#f8fafc', '#cbd5e1', 2);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 17px ${font}`;
+  ctx.font = 'bold 17px ' + font;
   ctx.fillText('① 国内メタバース市場予測（矢野経済研究所 2024年調査）', 307, 92, 530);
 
   const bars = [
@@ -342,54 +342,39 @@ function drawMarketDiagram() {
     ctx.fillRect(bx, chartBaseY - b.h, bw, b.h);
 
     ctx.fillStyle = '#0f172a';
-    ctx.font = `bold ${idx === 3 ? '13px' : '12px'} ${font}`;
+    ctx.font = 'bold ' + (idx === 3 ? '13px ' : '12px ') + font;
     ctx.fillText(b.text, bx + bw / 2, chartBaseY - b.h - 8, bw + 30);
 
     ctx.fillStyle = '#475569';
-    ctx.font = `11.5px ${font}`;
+    ctx.font = '11.5px ' + font;
     ctx.fillText(b.year, bx + bw / 2, chartBaseY + 20, bw + 20);
   });
 
   // 2028年度バー(x=446..531, y=130..390)との重なりを防ぐため左上空白域へ配置
   roundRect(ctx, 68, 135, 230, 36, 6, '#eff6ff', '#2563eb', 1.5);
   ctx.fillStyle = '#1e40af';
-  ctx.font = `bold 13px ${font}`; ctx.fillText('約6.8倍急拡大（年平均+61.5\%）', 183, 158, 215); >>>> <<<< const compData = [ { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 買い切り+除菌', price: '600〜2,000円/h', hl: true }, { name: '自宅単身住宅', space: '× 家具衝突・騒音', equip: '△ 初期30〜40万', clean: '◎ 個人所有', price: '家賃負担', hl: false }, ==== const compData = [ { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 有人清掃+除菌', price: '600〜2,000円/h', hl: true }, { name: '自宅単身住宅', space: '× 家具衝突・騒音', equip: '△ 初期30〜40万', clean: '◎ 個人所有', price: '家賃負担', hl: false }, >>>> <<<< ctx.fillStyle = '#059669'; ctx.font = `bold 12.5px ${font}`;
-  ctx.fillText('★買い切りシリコンカバーによる衛生対策で共用VRの最大の壁を突破', 890, 548, 500);
-
-  const img = document.getElementById('img-market');
-====
-  ctx.fillStyle = '#059669';
-  ctx.font = `bold 12.5px ${font}`; ctx.fillText('★専任スタッフの利用間清掃＋買い切りカバー＋UV除菌で衛生の壁を突破', 890, 548, 500);  const img = document.getElementById('img-market'); >>>> <<<< // 棒2: ヘビー室1室＋物販 67.3万円 ctx.fillStyle = '#4f46e5'; ctx.fillRect(250, baseY - 134, 110, 134); ctx.fillStyle = '#10b981'; ctx.fillRect(250, baseY - 155, 110, 21); ctx.fillStyle = '#0f172a'; ctx.font = `bold 14px ${font}`;
-  ctx.fillText('ヘビー1室＋物販', 305, baseY + 22);
-====
-  // 棒2: ヘビー室1室＋物販 67.3万円
-  ctx.fillStyle = '#4f46e5';
-  ctx.fillRect(250, baseY - 134, 110, 134);
-  ctx.fillStyle = '#10b981';
-  ctx.fillRect(250, baseY - 155, 110, 21);
-  ctx.fillStyle = '#ffffff';
-  ctx.font = `bold 12px ${font}`; ctx.fillText('ヘビー1室 58.3万', 305, baseY - 62); ctx.fillStyle = '#0f172a'; ctx.font = `bold 14px ${font}`;
-  ctx.fillText('ヘビー1室＋物販', 305, baseY + 22);
+  ctx.font = 'bold 13px ' + font;
+  ctx.fillText('約6.8倍急拡大（年平均+61.5%）', 183, 158, 215);
 
   roundRect(ctx, 45, 430, 525, 145, 8, '#ffffff', '#cbd5e1', 1.5);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 13.5px ${font}`;
+  ctx.font = 'bold 13.5px ' + font;
   ctx.fillText('【熱狂的な需要 vs 狭小住宅ギャップ】', 307, 456, 500);
   ctx.fillStyle = '#334155';
-  ctx.font = `12.5px ${font}`;
+  ctx.font = '12.5px ' + font;
   ctx.fillText('・VRChat国別アクセス比率：日本が世界1位（37%・Sensor Tower）', 307, 482, 500);
   ctx.fillText('・首都圏単身向け賃貸床面積：平均20.3㎡（総務省住宅統計）', 307, 506, 500);
   ctx.fillStyle = '#dc2626';
-  ctx.font = `bold 12.5px ${font}`;
+  ctx.font = 'bold 12.5px ' + font;
   ctx.fillText('⇒ 自宅では不可能な「安全な可動空間・防音・フルトラ」への強い需要が存在', 307, 532, 500);
 
   roundRect(ctx, 610, 60, 560, 535, 12, '#f8fafc', '#cbd5e1', 2);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 17px ${font}`;
+  ctx.font = 'bold 17px ' + font;
   ctx.fillText('② 既存サービスとの差別化（市場の空白地帯）', 890, 92, 530);
 
   const compData = [
-    { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 買い切り+除菌', price: '600〜2,000円/h', hl: true },
+    { name: '当事業「V-Room」', space: '◎ 3〜10畳防音', equip: '◎ 持込/常設BS', clean: '◎ 有人清掃+除菌', price: '600〜2,000円/h', hl: true },
     { name: '自宅単身住宅', space: '× 家具衝突・騒音', equip: '△ 初期30〜40万', clean: '◎ 個人所有', price: '家賃負担', hl: false },
     { name: 'ネットカフェ', space: '× 着座1畳のみ', equip: '× VR非対応', clean: '△ 共用皮脂懸念', price: '500〜700円/h', hl: false },
     { name: '商業VR施設', space: '○ プレイゾーン', equip: '× 指定ゲームのみ', clean: '△ 不織布のみ', price: '約3,000円/15分', hl: false },
@@ -401,7 +386,7 @@ function drawMarketDiagram() {
   ctx.fillStyle = '#e2e8f0';
   ctx.fillRect(colX[0], tableTop, colX[5] - colX[0], 32);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 12.5px ${font}`;
+  ctx.font = 'bold 12.5px ' + font;
   ctx.fillText('分類', (colX[0] + colX[1]) / 2, tableTop + 21);
   ctx.fillText('可動空間', (colX[1] + colX[2]) / 2, tableTop + 21);
   ctx.fillText('VR機材', (colX[2] + colX[3]) / 2, tableTop + 21);
@@ -417,29 +402,29 @@ function drawMarketDiagram() {
     ctx.strokeRect(colX[0], rowY, colX[5] - colX[0], 54);
 
     ctx.fillStyle = row.hl ? '#0369a1' : '#0f172a';
-    ctx.font = `${row.hl ? 'bold ' : ''}12px ${font}`;
+    ctx.font = (row.hl ? 'bold ' : '') + '12px ' + font;
     ctx.fillText(row.name, (colX[0] + colX[1]) / 2, rowY + 31, colX[1] - colX[0] - 6);
     ctx.fillStyle = row.hl ? '#0f172a' : '#334155';
-    ctx.font = `11.5px ${font}`;
+    ctx.font = '11.5px ' + font;
     ctx.fillText(row.space, (colX[1] + colX[2]) / 2, rowY + 31, colX[2] - colX[1] - 4);
     ctx.fillText(row.equip, (colX[2] + colX[3]) / 2, rowY + 31, colX[3] - colX[2] - 4);
     ctx.fillText(row.clean, (colX[3] + colX[4]) / 2, rowY + 31, colX[4] - colX[3] - 4);
     ctx.fillStyle = row.hl ? '#0284c7' : '#0f172a';
-    ctx.font = `${row.hl ? 'bold ' : ''}11.5px ${font}`;
+    ctx.font = (row.hl ? 'bold ' : '') + '11.5px ' + font;
     ctx.fillText(row.price, (colX[4] + colX[5]) / 2, rowY + 31, colX[5] - colX[4] - 6);
   });
 
   roundRect(ctx, 625, 435, 530, 140, 8, '#eff6ff', '#2563eb', 1.5);
   ctx.fillStyle = '#1e3a8a';
-  ctx.font = `bold 13.5px ${font}`;
+  ctx.font = 'bold 13.5px ' + font;
   ctx.fillText('【競合ポジショニングの核心：市場の空白地帯】', 890, 465, 500);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `12.5px ${font}`;
+  ctx.font = '12.5px ' + font;
   ctx.fillText('「手頃な価格（実質300円/h〜）」で「全身動ける防音空間」と「フルトラ常設」を', 890, 495, 500);
   ctx.fillText('兼ね備えた施設は日本に存在せず、ブルーオーシャンを獲得できる。', 890, 520, 500);
   ctx.fillStyle = '#059669';
-  ctx.font = `bold 12.5px ${font}`;
-  ctx.fillText('★買い切りシリコンカバーによる衛生対策で共用VRの最大の壁を突破', 890, 548, 500);
+  ctx.font = 'bold 12.5px ' + font;
+  ctx.fillText('★専任スタッフの利用間清掃＋買い切りカバー＋UV除菌で衛生の壁を突破', 890, 548, 500);
 
   const img = document.getElementById('img-market');
   if (img) img.src = c.toDataURL('image/png');
@@ -590,8 +575,11 @@ function drawProfitHygieneDiagram() {
   ctx.fillRect(250, baseY - 134, 110, 134);
   ctx.fillStyle = '#10b981';
   ctx.fillRect(250, baseY - 155, 110, 21);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 12px ' + font;
+  ctx.fillText('ヘビー1室 58.3万', 305, baseY - 62);
   ctx.fillStyle = '#0f172a';
-  ctx.font = `bold 14px ${font}`;
+  ctx.font = 'bold 14px ' + font;
   ctx.fillText('ヘビー1室＋物販', 305, baseY + 22);
   ctx.font = `bold 12px ${font}`;
   ctx.fillStyle = '#dc2626';
