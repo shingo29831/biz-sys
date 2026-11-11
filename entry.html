@@ -233,7 +233,7 @@
         </div>
         <pre id="doc-item-7" class="copy-content">【1. 法規制（風営法・旅館業法・消防法）への完全適合と安全補償体制】
 個室型レンタルスペースで懸念される法規制および安全リスクに対し、開業前より以下のハード・ソフト両面の対策を徹底する。
-・風営法・旅館業法対策：室内からの完全施錠（内鍵固定）を設けない構造とし、防音ドアの一部に廊下から室内状況を確認できる防音複層ガラス小窓を配置。寝具の提供や宿泊・滞在行為を利用規約で厳격に禁止し、純粋な「IT機器・ワークスペース時間貸し」として所轄警察署・保健所へ事前照会を行う。
+・風営法・旅館業法対策：室内からの完全施錠（内鍵固定）を設けない構造とし、防音ドアの一部に廊下から室内状況を確認できる防音複層ガラス小窓を配置。寝具の提供や宿泊・滞在行為を利用規約で厳格に禁止し、純粋な「IT機器・ワークスペース時間貸し」として所轄警察署・保健所へ事前照会を行う。
 ・消防法・賠償責任保険：天井面には不燃材料を採用し、各個室に連動型煙感知器・誘導灯を設置。またVRプレイ中の転倒や機器破損に備え、壁・床全面の衝撃吸収クッション化に加え「施設所有（管理）者賠償責任保険」および「動産総合保険（月1.5万円）」へ加入し、利用者と店舗双方のリスクを完全にカバーする。
 
 【2. 「ライト室2室＋ヘビー室1室（計3室）・専任スタッフ1名有人管理」で採算が取れる3つの定量根拠】
@@ -569,8 +569,10 @@
     };
 
     function switchExcelMode(mode, btn) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(b => b.classList.remove('active'));
+      const targetBtn = btn || buttons[mode === 'annual' ? 1 : 0];
+      if (targetBtn) targetBtn.classList.add('active');
       const d = excelData[mode];
       document.getElementById('rev-table-title').textContent = d.revTitle;
       document.getElementById('exp-table-title').textContent = d.expTitle;

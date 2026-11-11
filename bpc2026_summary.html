@@ -541,10 +541,19 @@
       });
     }
 
+    function applyTheme(theme) {
+      htmlEl.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      toggleBtn.textContent = theme === 'dark' ? '☀️ ライトモード切替' : '🌙 ダークモード切替';
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark) ? 'dark' : 'light');
+
     toggleBtn.addEventListener('click', () => {
       const next = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      htmlEl.setAttribute('data-theme', next);
-      toggleBtn.textContent = next === 'dark' ? '☀️ ライトモード切替' : '🌙 ダークモード切替';
+      applyTheme(next);
       renderChart();
     });
 

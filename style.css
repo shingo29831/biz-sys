@@ -550,6 +550,15 @@ footer {
 }
 
 @media print {
+  :root, [data-theme="dark"] {
+    --bg: #ffffff;
+    --card-bg: #ffffff;
+    --card-sub: #f8fafc;
+    --text-main: #000000;
+    --text-sub: #334155;
+    --border: #94a3b8;
+  }
+  body { background: #ffffff; color: #000000; padding: 0; }
   .theme-switch-wrapper, .global-nav, .copy-btn, .tab-bar { display: none; }
   .section-card { page-break-inside: avoid; box-shadow: none; }
 }
