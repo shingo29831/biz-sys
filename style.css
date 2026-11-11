@@ -293,7 +293,9 @@ tr:nth-child(even) {
   background-color: var(--table-stripe);
 }
 
-.highlight-cell {
+.highlight-cell,
+tr.highlight-cell th,
+tr.highlight-cell td {
   background-color: var(--table-highlight-bg);
   font-weight: 700;
   color: var(--table-highlight-text);
