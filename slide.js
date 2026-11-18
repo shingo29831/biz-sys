@@ -11,6 +11,7 @@
   const stage = document.getElementById('deck-stage');
   const overlay = document.getElementById('shortcut-overlay');
   const toast = document.getElementById('export-toast');
+  const preDeckScreen = document.getElementById('pre-deck-screen');
 
   let currentIndex = 0;
   let isExporting = false;
@@ -840,21 +841,19 @@
     }
   });
 
-  if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', initDeck);
-  } else {
-    initDeck();
-  }
-})();
-
-
   function isPreDeckVisible() {
-    return preDeckScreen && !preDeckScreen.classList.contains('hidden');
+    return Boolean(preDeckScreen && !preDeckScreen.classList.contains('hidden'));
   }
-
 
   function closePreDeckScreen() {
     if (preDeckScreen) {
       preDeckScreen.classList.add('hidden');
     }
   }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', initDeck);
+  } else {
+    initDeck();
+  }
+})();
