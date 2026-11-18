@@ -696,75 +696,130 @@
   }
 
   /* =========================================================
-     6. キーボードショートカット制御（ボタンUIレス設計）
+     6. キーボードショートカット制御（日本語IMEオン・物理キーコード完全対応）
   ========================================================= */
+  function ensureFocus() {
+    window.focus();
+    if (document.body) {
+      document.body.focus({ preventScroll: true });
+    }
+  }
+
   function handleKeyDown(e) {
     if (e.ctrlKey || e.altKey || e.metaKey) return;
 
-    const key = e.key;
+    const code = e.code || '';
+    const rawKey = e.key || '';
+    // 日本語IME全角文字（例：「ｆ」「１」「　」）も半角小文字へ正規化
+    const normKey = rawKey.normalize ? rawKey.normalize('NFKC').toLowerCase() : rawKey.toLowerCase();
+
+    const isNext =
+      code === 'ArrowRight' || code === 'ArrowDown' || code === 'Space' || code === 'Enter' || code === 'NumpadEnter' || code === 'PageDown' ||
+      rawKey === 'ArrowRight' || rawKey === 'ArrowDown' || normKey === ' ' || rawKey === 'Enter' || rawKey === 'PageDown';
+
+    const isPrev =
+      code === 'ArrowLeft' || code === 'ArrowUp' || code === 'Backspace' || code === 'PageUp' ||
+      rawKey === 'ArrowLeft' || rawKey === 'ArrowUp' || rawKey === 'Backspace' || rawKey === 'PageUp';
+
+    const isFullscreen = code === 'KeyF' || normKey === 'f';
+    const isPdf = code === 'KeyP' || normKey === 'p';
+    const isPptx = code === 'KeyX' || code === 'KeyD' || normKey === 'x' || normKey === 'd';
+    const isIndex = code === 'KeyI' || normKey === 'i';
+    const isHome = code === 'Home' || rawKey === 'Home';
+    const isEnd = code === 'End' || rawKey === 'End';
+
+    let digitNum = null;
+    if (/^Digit[1-9]$/.test(code)) {
+      digitNum = parseInt(code.replace('Digit', ''), 10);
+    } else if (/^Numpad[1-9]$/.test(code)) {
+      digitNum = parseInt(code.replace('Numpad', ''), 10);
+    } else if (code === 'Digit0' || code === 'Numpad0' || normKey === '0') {
+      digitNum = 10;
+    } else if (/^[1-9]$/.test(normKey)) {
+      digitNum = parseInt(normKey, 10);
+    }
 
     // プレゼン画面遷移前のスタンバイ画面が表示されている場合
     if (isPreDeckVisible()) {
-      if (key === 'Enter' || key === ' ' || key === 'ArrowRight' || key === 'ArrowDown') {
-        e.preventDefault();
-        closePreDeckScreen();
-        showSlide(0);
-        return;
-      }
-      if (key === 'f' || key === 'F') {
+      if (isFullscreen) {
         e.preventDefault();
         toggleFullscreen();
         showSlide(0);
         return;
       }
+      if (isNext) {
+        e.preventDefault();
+        closePreDeckScreen();
+        showSlide(0);
+        return;
+      }
+      if (digitNum !== null) {
+        e.preventDefault();
+        closePreDeckScreen();
+        showSlide(digitNum - 1);
+        return;
+      }
+      if (isPdf) {
+        e.preventDefault();
+        closePreDeckScreen();
+        if (e.shiftKey) window.print();
+        else exportToPDF();
+        return;
+      }
+      if (isPptx) {
+        e.preventDefault();
+        closePreDeckScreen();
+        exportToPPTX();
+        return;
+      }
+      if (isIndex) {
+        e.preventDefault();
+        window.location.href = 'index.html';
+        return;
+      }
     }
 
-    if (key === 'ArrowRight' || key === 'ArrowDown' || key === ' ' || key === 'Enter' || key === 'PageDown') {
+    if (isNext) {
       e.preventDefault();
       nextSlide();
-    } else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'Backspace' || key === 'PageUp') {
+    } else if (isPrev) {
       e.preventDefault();
       prevSlide();
-    } else if (key === 'Home') {
+    } else if (isHome) {
       e.preventDefault();
       showSlide(0);
-    } else if (key === 'End') {
+    } else if (isEnd) {
       e.preventDefault();
       showSlide(slides.length - 1);
-    } else if (/^[1-9]$/.test(key)) {
+    } else if (digitNum !== null) {
       e.preventDefault();
-      showSlide(parseInt(key, 10) - 1);
-    } else if (key === '0') {
-      e.preventDefault();
-      showSlide(9);
-    } else if (key === 'f' || key === 'F') {
+      showSlide(digitNum - 1);
+    } else if (isFullscreen) {
       e.preventDefault();
       toggleFullscreen();
-    } else if (key === 'p' || key === 'P') {
+    } else if (isPdf) {
       e.preventDefault();
       if (e.shiftKey) {
         window.print();
       } else {
         exportToPDF();
       }
-    } else if (key === 'x' || key === 'X' || key === 'd' || key === 'D') {
+    } else if (isPptx) {
       e.preventDefault();
       exportToPPTX();
-    } else if (key === 'i' || key === 'I') {
+    } else if (isIndex) {
       e.preventDefault();
       window.location.href = 'index.html';
     }
   }
 
   /* =========================================================
-     7. 初期化
+     7. 初期化（即時セットアップ＋キャプチャフェーズでのキー捕捉）
   ========================================================= */
-  window.addEventListener('resize', fitStageToWindow);
-  window.addEventListener('keydown', handleKeyDown);
-
-  window.addEventListener('DOMContentLoaded', () => {
+  function initDeck() {
     fitStageToWindow();
     drawSlideCharts();
+    ensureFocus();
 
     const hashMatch = window.location.hash.match(/^#slide-(\d+)$/);
     if (hashMatch) {
@@ -773,7 +828,23 @@
         showSlide(idx);
       }
     }
+  }
+
+  window.addEventListener('resize', fitStageToWindow);
+  window.addEventListener('keydown', handleKeyDown, true);
+  window.addEventListener('click', () => {
+    ensureFocus();
+    if (isPreDeckVisible()) {
+      closePreDeckScreen();
+      showSlide(0);
+    }
   });
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', initDeck);
+  } else {
+    initDeck();
+  }
 })();
 
 

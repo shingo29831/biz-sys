@@ -6,7 +6,7 @@
   <title>プレゼン資料：防音VR個室「V-Room」— 第23回BPC提案書</title>
   <link rel="stylesheet" href="slide.css">
 </head>
-<body>
+<body tabindex="-1" autofocus>
   <!-- プレゼン画面遷移前のショートカットキー案内画面（キー入力でプレゼン本編へ遷移し、プレゼン内では非表示） -->
   <div id="pre-deck-screen" class="pre-deck-screen">
     <div class="pre-deck-card">
@@ -754,10 +754,10 @@
   <!-- 出力ステータス通知（PDF/PPTX生成中のみ自動表示・ボタンなし） -->
   <div id="export-toast" class="export-toast hidden" role="status" aria-live="polite"></div>
 
-  <!-- PDF / PPTX 生成用ライブラリ (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
   <script src="slide.js"></script>
+  <!-- PDF / PPTX 生成用ライブラリ (非同期読み込みでショートカット初期化のブロッキングを防止) -->
+  <script async src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 </body>
 </html>
