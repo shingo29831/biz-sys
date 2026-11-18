@@ -29,6 +29,7 @@
 
   function showSlide(index) {
     if (index < 0 || index >= slides.length) return;
+    closePreDeckScreen();
     currentIndex = index;
     slides.forEach((s, i) => {
       s.classList.toggle('active', i === currentIndex);
@@ -48,7 +49,7 @@
     }
   }
 
-  function showToast(message, durationMs = 3200) {
+  function showToast(message, durationMs = 3000) {
     if (!toast) return;
     if (toastTimer) clearTimeout(toastTimer);
     toast.textContent = message;
@@ -64,10 +65,9 @@
      2. 全画面表示（Fullscreen API）切替
   ========================================================= */
   function toggleFullscreen() {
+    closePreDeckScreen();
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => {
-        showToast('全画面表示に切り替えました（Esc または F キーで解除）', 2200);
-      }).catch(() => {
+      document.documentElement.requestFullscreen().catch(() => {
         showToast('全画面表示がブラウザによりブロックされました', 2500);
       });
     } else {
@@ -86,6 +86,7 @@
   ========================================================= */
   async function exportToPDF() {
     if (isExporting) return;
+    closePreDeckScreen();
 
     if (typeof window.html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
       window.print();
@@ -118,12 +119,12 @@
           scale: 1.5,
           width: STAGE_WIDTH,
           height: STAGE_HEIGHT,
-          backgroundColor: '#0f172a',
+          backgroundColor: '#ffffff',
           useCORS: true,
           logging: false
         });
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.92);
+        const imgData = canvas.toDataURL('image/jpeg', 0.94);
         if (i > 0) {
           pdf.addPage([STAGE_WIDTH, STAGE_HEIGHT], 'landscape');
         }
@@ -131,7 +132,7 @@
       }
 
       pdf.save('V-Room_Presentation.pdf');
-      showToast('✅ V-Room_Presentation.pdf をダウンロードしました', 3500);
+      showToast('✅ V-Room_Presentation.pdf をダウンロードしました', 3200);
     } catch (err) {
       console.error('PDF生成エラー:', err);
       showToast('⚠️ PDF直接生成に失敗したため印刷ダイアログを開きます', 3000);
@@ -149,6 +150,8 @@
   ========================================================= */
   async function exportToPPTX() {
     if (isExporting) return;
+    closePreDeckScreen();
+
     if (typeof window.PptxGenJS === 'undefined') {
       showToast('⚠️ PptxGenJSライブラリを読み込めませんでした', 3500);
       return;
@@ -164,18 +167,20 @@
       pptx.company = '第23回 ビジネスプロデュースコンペティション';
       pptx.title = '防音VR個室「V-Room」事業企画プレゼンテーション';
 
+      // 明るいライトテーマ配色
       const C = {
-        bg: '0F172A',
-        panel: '1E293B',
-        border: '334155',
-        white: 'FFFFFF',
-        sub: '94A3B8',
-        text: 'E2E8F0',
+        bg: 'FFFFFF',
+        panel: 'F8FAFC',
+        border: 'CBD5E1',
+        dark: '0F172A',
+        sub: '475569',
+        text: '1E293B',
         blue: '2563EB',
-        cyan: '38BDF8',
-        green: '10B981',
-        purple: 'A855F7',
-        red: 'EF4444'
+        cyan: '0284C7',
+        green: '059669',
+        purple: '7C3AED',
+        red: 'DC2626',
+        lightBlue: 'EFF6FF'
       };
 
       const tblOpts = {
@@ -189,11 +194,11 @@
 
       function addHeader(slide, tag, title, pageNum) {
         slide.background = { color: C.bg };
-        slide.addText(tag, { x: 0.4, y: 0.2, w: 8.0, h: 0.24, fontSize: 9, bold: true, color: C.cyan, fontFace: 'Meiryo' });
-        slide.addText(title, { x: 0.4, y: 0.42, w: 8.4, h: 0.4, fontSize: 17, bold: true, color: C.white, fontFace: 'Meiryo' });
+        slide.addText(tag, { x: 0.4, y: 0.2, w: 8.0, h: 0.24, fontSize: 9, bold: true, color: C.blue, fontFace: 'Meiryo' });
+        slide.addText(title, { x: 0.4, y: 0.42, w: 8.4, h: 0.4, fontSize: 17, bold: true, color: C.dark, fontFace: 'Meiryo' });
         slide.addText(`${String(pageNum).padStart(2, '0')} / 10`, {
-          x: 8.9, y: 0.32, w: 0.7, h: 0.32, fontSize: 10, bold: true, color: C.sub, align: 'center',
-          fill: { color: C.panel }, line: { color: C.border, pt: 1 }, fontFace: 'Meiryo'
+          x: 8.9, y: 0.32, w: 0.7, h: 0.32, fontSize: 10, bold: true, color: C.blue, align: 'center',
+          fill: { color: C.lightBlue }, line: { color: C.border, pt: 1 }, fontFace: 'Meiryo'
         });
         slide.addShape(pptx.ShapeType.line, { x: 0.4, y: 0.9, w: 9.2, h: 0, line: { color: C.border, pt: 1.5 } });
       }
@@ -203,21 +208,21 @@
         const s = pptx.addSlide();
         s.background = { color: C.bg };
         s.addText('第23回 ビジネスプロデュースコンペティション（BPC）提案書 ｜ プラン名：防音VR個室V-Room', {
-          x: 0.5, y: 0.45, w: 8.5, h: 0.36, fontSize: 11, bold: true, color: C.cyan,
-          fill: { color: C.panel }, line: { color: C.border, pt: 1 }, align: 'center', fontFace: 'Meiryo'
+          x: 0.5, y: 0.45, w: 8.5, h: 0.36, fontSize: 11, bold: true, color: C.blue,
+          fill: { color: C.lightBlue }, line: { color: C.blue, pt: 1 }, align: 'center', fontFace: 'Meiryo'
         });
         s.addText('日本の狭小な住環境課題と衛生不安を解消する', {
           x: 0.5, y: 1.2, w: 9.0, h: 0.4, fontSize: 16, bold: true, color: C.cyan, fontFace: 'Meiryo'
         });
         s.addText('防音VR個室「V-Room」', {
-          x: 0.5, y: 1.6, w: 9.0, h: 0.85, fontSize: 40, bold: true, color: C.white, fontFace: 'Meiryo'
+          x: 0.5, y: 1.6, w: 9.0, h: 0.85, fontSize: 40, bold: true, color: C.dark, fontFace: 'Meiryo'
         });
         s.addText('機材常設・完全防音のVR特化型・有人管理時間貸しレンタルスペース事業', {
-          x: 0.5, y: 2.5, w: 9.0, h: 0.4, fontSize: 15, bold: true, color: C.text, fontFace: 'Meiryo'
+          x: 0.5, y: 2.5, w: 9.0, h: 0.4, fontSize: 15, bold: true, color: C.sub, fontFace: 'Meiryo'
         });
 
         const kpis = [
-          { label: '初期投資（1店舗3室）', val: '400万円', sub: '資本金500万（運転資金100万）', col: C.white },
+          { label: '初期投資（1店舗3室）', val: '400万円', sub: '資本金500万（運転資金100万）', col: C.dark },
           { label: '月間営業利益（稼働45%）', val: '44.5万円/月', sub: '月商125.6万 / 利益率35.4%', col: C.cyan },
           { label: '投資回収・損益分岐点', val: '約9.0ヶ月', sub: 'BEP稼働率 28.3% (1日6.8h)', col: C.green },
           { label: '10年後長期ビジョン', val: '年商22.5億円', sub: '全国150拠点（5年後50拠点）', col: C.purple }
@@ -235,14 +240,14 @@
       {
         const s = pptx.addSlide();
         addHeader(s, '01 / PROBLEM & INSIGHT（審査項目3）', '背景と課題：世界1位のVR熱量と「日本の住環境・4つの壁」', 2);
-        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.05, w: 4.1, h: 2.1, fill: { color: C.panel }, line: { color: C.cyan, pt: 1.5 } });
-        s.addText('VRChat国別アクセス比率：日本が世界第1位（37%）', { x: 0.55, y: 1.15, w: 3.8, h: 0.4, fontSize: 12.5, bold: true, color: C.cyan, fontFace: 'Meiryo' });
+        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.05, w: 4.1, h: 2.1, fill: { color: C.lightBlue }, line: { color: C.blue, pt: 1.5 } });
+        s.addText('VRChat国別アクセス比率：日本が世界第1位（37%）', { x: 0.55, y: 1.15, w: 3.8, h: 0.4, fontSize: 12.5, bold: true, color: C.blue, fontFace: 'Meiryo' });
         s.addText('・Sensor Tower調査で米国(28%)を抜き世界1位\n・国内メタバース市場は2028年度に1兆8,700億円へ拡大\n・しかし自宅では物理的制約により100%没入できない', {
           x: 0.55, y: 1.6, w: 3.8, h: 1.4, fontSize: 10, color: C.text, fontFace: 'Meiryo'
         });
 
         s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 3.3, w: 4.1, h: 1.95, fill: { color: C.panel }, line: { color: C.border, pt: 1 } });
-        s.addText('首都圏単身賃貸 平均20.3㎡ vs 推奨2m×2m空間', { x: 0.55, y: 3.42, w: 3.8, h: 0.35, fontSize: 11.5, bold: true, color: C.white, fontFace: 'Meiryo' });
+        s.addText('首都圏単身賃貸 平均20.3㎡ vs 推奨2m×2m空間', { x: 0.55, y: 3.42, w: 3.8, h: 0.35, fontSize: 11.5, bold: true, color: C.dark, fontFace: 'Meiryo' });
         s.addText('総務省「令和5年住宅・土地統計調査」単身平均20.3㎡に対し、SteamVR推奨ルームスケールは家具を除き2m×2m以上が必須。自宅での空間確保は困難。', {
           x: 0.55, y: 3.82, w: 3.8, h: 1.3, fontSize: 9.8, color: C.text, fontFace: 'Meiryo'
         });
@@ -257,7 +262,7 @@
           const x = 4.7 + (idx % 2) * 2.5;
           const y = 1.05 + Math.floor(idx / 2) * 2.15;
           s.addShape(pptx.ShapeType.roundRect, { x, y, w: 2.4, h: 2.0, fill: { color: C.panel }, line: { color: C.red, pt: 1.5 } });
-          s.addText(w.t, { x: x + 0.12, y: y + 0.14, w: 2.16, h: 0.4, fontSize: 11, bold: true, color: C.white, fontFace: 'Meiryo' });
+          s.addText(w.t, { x: x + 0.12, y: y + 0.14, w: 2.16, h: 0.4, fontSize: 11, bold: true, color: C.red, fontFace: 'Meiryo' });
           s.addText(w.d, { x: x + 0.12, y: y + 0.58, w: 2.16, h: 1.3, fontSize: 9.5, color: C.text, fontFace: 'Meiryo' });
         });
       }
@@ -266,9 +271,9 @@
       {
         const s = pptx.addSlide();
         addHeader(s, '02 / SOLUTION & PRICING（審査項目3・4）', '解決策：「新結合」による防音VR個室と選べる高コスパ料金体系', 3);
-        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.02, w: 9.2, h: 0.65, fill: { color: C.panel }, line: { color: C.blue, pt: 1.5 } });
+        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.02, w: 9.2, h: 0.65, fill: { color: C.lightBlue }, line: { color: C.blue, pt: 1.5 } });
         s.addText('【新結合】 防音クッション個室(Dr-40) × 選べる機材有無(持込/フル貸出) × 買い切りシリコンカバー(500円) ＝ 実質300円/時〜のVR専用空間', {
-          x: 0.5, y: 1.1, w: 9.0, h: 0.5, fontSize: 11, bold: true, color: C.cyan, align: 'center', fontFace: 'Meiryo'
+          x: 0.5, y: 1.1, w: 9.0, h: 0.5, fontSize: 11, bold: true, color: C.blue, align: 'center', fontFace: 'Meiryo'
         });
 
         const rows = [
@@ -292,7 +297,7 @@
         if (schemeCanvas) {
           s.addImage({ data: schemeCanvas.toDataURL('image/png'), x: 0.4, y: 1.05, w: 5.8, h: 4.2 });
         }
-        s.addShape(pptx.ShapeType.roundRect, { x: 6.35, y: 1.05, w: 3.25, h: 4.2, fill: { color: C.panel }, line: { color: C.cyan, pt: 1.5 } });
+        s.addShape(pptx.ShapeType.roundRect, { x: 6.35, y: 1.05, w: 3.25, h: 4.2, fill: { color: C.panel }, line: { color: C.blue, pt: 1.5 } });
         s.addText(
           '① スマートロック自動受付\nWeb予約＋事前決済完了後、利用時間のみ有効な入室＆機材庫PINを自動発行しフロント業務を完全省力化。\n\n' +
           '② 専任スタッフ1名（月26.5万円）\n時給1,260円×154h＋深夜1,575円×22h＝22.9万＋社保・交通費3.6万で有人管理。\n\n' +
@@ -313,9 +318,9 @@
         ];
         steps.forEach((st, idx) => {
           const x = 0.4 + idx * 2.33;
-          s.addShape(pptx.ShapeType.roundRect, { x, y: 1.05, w: 2.2, h: 2.4, fill: { color: C.panel }, line: { color: C.cyan, pt: 1.5 } });
-          s.addText(st.n, { x: x + 0.12, y: y + 0.15, w: 1.96, h: 0.28, fontSize: 9.5, bold: true, color: C.cyan, fontFace: 'Meiryo' });
-          s.addText(st.t, { x: x + 0.12, y: 1.48, w: 1.96, h: 0.45, fontSize: 11, bold: true, color: C.white, fontFace: 'Meiryo' });
+          s.addShape(pptx.ShapeType.roundRect, { x, y: 1.05, w: 2.2, h: 2.4, fill: { color: C.panel }, line: { color: C.blue, pt: 1.5 } });
+          s.addText(st.n, { x: x + 0.12, y: 1.2, w: 1.96, h: 0.28, fontSize: 9.5, bold: true, color: C.blue, fontFace: 'Meiryo' });
+          s.addText(st.t, { x: x + 0.12, y: 1.48, w: 1.96, h: 0.45, fontSize: 11, bold: true, color: C.dark, fontFace: 'Meiryo' });
           s.addText(st.d, { x: x + 0.12, y: 2.0, w: 1.96, h: 1.3, fontSize: 9.2, color: C.text, fontFace: 'Meiryo' });
         });
         s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 3.65, w: 9.2, h: 1.6, fill: { color: C.panel }, line: { color: C.border, pt: 1 } });
@@ -331,7 +336,7 @@
         const s = pptx.addSlide();
         addHeader(s, '05 / MARKET SIZE & COMPETITIVE ADVANTAGE（審査項目5）', '市場規模（1兆8,700億円予測）と競合ポジショニング比較', 6);
         s.addText('【TAM】1兆8,700億円（2028年度国内メタバース市場予測：矢野経済研究所） ／ 【SAM】525億円 ／ 【SOM】22.5億円（10年後150拠点）', {
-          x: 0.4, y: 1.0, w: 9.2, h: 0.4, fontSize: 11, bold: true, color: C.cyan, fontFace: 'Meiryo'
+          x: 0.4, y: 1.0, w: 9.2, h: 0.4, fontSize: 11, bold: true, color: C.blue, fontFace: 'Meiryo'
         });
         const compRows = [
           ['サービス分類', '空間の可動域・防音', 'VR機材の専門性', '衛生・有人管理', '時間あたり料金帯'],
@@ -378,7 +383,7 @@
       {
         const s = pptx.addSlide();
         addHeader(s, '07 / PROFITABILITY PROOF & SENSITIVITY（審査項目7・8）', '採算性の定量証明：二階建て収益構造と3シナリオ感度分析', 8);
-        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.05, w: 9.2, h: 1.25, fill: { color: C.panel }, line: { color: C.cyan, pt: 1.5 } });
+        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 1.05, w: 9.2, h: 1.25, fill: { color: C.lightBlue }, line: { color: C.blue, pt: 1.5 } });
         s.addText(
           '① 二階建て採算構造：月間固定費75.5万円に対し、「ヘビー室1室(58.3万円)＋物販(9.0万円)＝67.3万円」だけで固定費の89.2%を回収。\n' +
           '② 低い損益分岐点：1室あたり1日約6.8時間（BEP稼働率28.3%）で黒字化。ライト2室＋ヘビー1室が45㎡内で最短回収（約9.0ヶ月）の最適解。',
@@ -419,22 +424,22 @@
         ];
         cards.forEach((c, idx) => {
           const x = 0.4 + idx * 3.1;
-          s.addShape(pptx.ShapeType.roundRect, { x, y: 1.05, w: 3.0, h: 2.35, fill: { color: C.panel }, line: { color: C.cyan, pt: 1 } });
-          s.addText(c.t, { x: x + 0.14, y: 1.2, w: 2.72, h: 0.38, fontSize: 12, bold: true, color: C.cyan, fontFace: 'Meiryo' });
+          s.addShape(pptx.ShapeType.roundRect, { x, y: 1.05, w: 3.0, h: 2.35, fill: { color: C.panel }, line: { color: C.blue, pt: 1 } });
+          s.addText(c.t, { x: x + 0.14, y: 1.2, w: 2.72, h: 0.38, fontSize: 12, bold: true, color: C.blue, fontFace: 'Meiryo' });
           s.addText(c.d, { x: x + 0.14, y: 1.65, w: 2.72, h: 1.6, fontSize: 9.8, color: C.text, fontFace: 'Meiryo' });
         });
 
-        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 3.6, w: 9.2, h: 1.6, fill: { color: C.panel }, line: { color: C.blue, pt: 2 } });
+        s.addShape(pptx.ShapeType.roundRect, { x: 0.4, y: 3.6, w: 9.2, h: 1.6, fill: { color: C.lightBlue }, line: { color: C.blue, pt: 2 } });
         s.addText(
           '【総括：防音VR個室「V-Room」】\n' +
           '日本の狭小な住環境と世界1位のVR熱量のギャップを「防音クッション個室×選べる機材有無×有人インターバル清掃×スマートロック省人化」で解決。\n' +
           '初期投資400万円・月間営業利益44.5万円（利益率35.4%）・約9.0ヶ月回収の高い収益性と社会インフラ化を実現します。',
-          { x: 0.6, y: 3.75, w: 8.8, h: 1.3, fontSize: 11, bold: true, color: C.white, fontFace: 'Meiryo' }
+          { x: 0.6, y: 3.75, w: 8.8, h: 1.3, fontSize: 11, bold: true, color: C.dark, fontFace: 'Meiryo' }
         );
       }
 
       await pptx.writeFile({ fileName: 'V-Room_Presentation.pptx' });
-      showToast('✅ V-Room_Presentation.pptx をダウンロードしました', 3500);
+      showToast('✅ V-Room_Presentation.pptx をダウンロードしました', 3200);
     } catch (err) {
       console.error('PPTX生成エラー:', err);
       showToast('⚠️ PPTXファイルの生成中にエラーが発生しました', 3500);
@@ -463,18 +468,18 @@
       const ctx = cShare.getContext('2d');
       ctx.clearRect(0, 0, cShare.width, cShare.height);
       const items = [
-        { label: '日本 (世界1位)', val: 37, col: '#38bdf8' },
-        { label: '米国 (2位)', val: 28, col: '#3b82f6' },
-        { label: '英国 (3位)', val: 6, col: '#818cf8' },
+        { label: '日本 (世界1位)', val: 37, col: '#0284c7' },
+        { label: '米国 (2位)', val: 28, col: '#2563eb' },
+        { label: '英国 (3位)', val: 6, col: '#6366f1' },
         { label: 'その他', val: 29, col: '#64748b' }
       ];
       items.forEach((it, i) => {
         const y = 18 + i * 46;
-        ctx.fillStyle = '#e2e8f0';
+        ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 14px sans-serif';
         ctx.fillText(it.label, 10, y + 18);
 
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = '#e2e8f0';
         roundRect(ctx, 130, y, 220, 26, 6);
         ctx.fill();
 
@@ -482,7 +487,7 @@
         roundRect(ctx, 130, y, (220 * it.val) / 45, 26, 6);
         ctx.fill();
 
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 15px sans-serif';
         ctx.fillText(`${it.val}%`, 360, y + 19);
       });
@@ -500,54 +505,54 @@
         { x: 512, w: 232, t: '👤 専任スタッフ1名・決済', s: '利用間直接清掃・検品・決済', c: '人件費26.5万・消耗1.5万・4.5%' }
       ];
       topBoxes.forEach((b) => {
-        ctx.fillStyle = '#0f172a';
-        ctx.strokeStyle = '#475569';
+        ctx.fillStyle = '#f8fafc';
+        ctx.strokeStyle = '#94a3b8';
         ctx.lineWidth = 2;
         roundRect(ctx, b.x, 12, b.w, 105, 10);
         ctx.fill();
         ctx.stroke();
 
-        ctx.fillStyle = '#38bdf8';
+        ctx.fillStyle = '#1d4ed8';
         ctx.font = 'bold 14px sans-serif';
         ctx.fillText(b.t, b.x + 12, 40);
-        ctx.fillStyle = '#e2e8f0';
+        ctx.fillStyle = '#334155';
         ctx.font = '13px sans-serif';
         ctx.fillText(b.s, b.x + 12, 66);
-        ctx.fillStyle = '#fbbf24';
+        ctx.fillStyle = '#b45309';
         ctx.font = 'bold 12px sans-serif';
         ctx.fillText(`◀ ${b.c}`, b.x + 12, 94);
       });
 
-      ctx.fillStyle = '#94a3b8';
+      ctx.fillStyle = '#475569';
       ctx.font = 'bold 13px sans-serif';
       ctx.fillText('▲ 月間総費用 81.2万円（うち固定費75.5万円） ｜ ▼ 空間・10G回線・有人検品済みの清潔な機材供給', 65, 148);
 
       // 中央コアボックス
-      ctx.fillStyle = '#1e3a8a';
-      ctx.strokeStyle = '#38bdf8';
+      ctx.fillStyle = '#eff6ff';
+      ctx.strokeStyle = '#2563eb';
       ctx.lineWidth = 3;
       roundRect(ctx, 16, 168, 728, 115, 14);
       ctx.fill();
       ctx.stroke();
 
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#0f172a';
       ctx.font = 'bold 19px sans-serif';
       ctx.fillText('🚀 当事業：防音VR個室「V-Room」（1店舗3室：ヘビー1室＋ライト2室）', 45, 205);
-      ctx.fillStyle = '#bae6fd';
+      ctx.fillStyle = '#1e3a8a';
       ctx.font = '14px sans-serif';
       ctx.fillText('・Web事前決済＋スマートロックPIN自動発行でフロント受付を省力化（専任スタッフ1名体制）', 45, 236);
       ctx.fillText('・予約間15分インターバルでの直接入室検品・除菌清拭＋UV-C殺菌庫＋買い切りカバー(500円)', 45, 262);
 
-      ctx.fillStyle = '#34d399';
+      ctx.fillStyle = '#047857';
       ctx.font = 'bold 13px sans-serif';
       ctx.fillText('▼ 安全・清潔なVR空間と選べる機材の提供 ｜ ▲ 利用料・物販支払（月商125.6万／営業利益44.5万）', 55, 314);
 
       const botBoxes = [
-        { x: 16, w: 354, t: '🧑‍🎓 ライト層・持込層（昼〜夕方中心）', s: '持込600円/h・貸出1,000円/h（深夜実質300円/h〜）', c: 'ライト2室売上：月583,200円（平均900円/h）', col: '#38bdf8' },
-        { x: 390, w: 354, t: '💃 ヘビー層・配信者層（夜間・深夜・休日）', s: '持込1,200円/h・フル貸出2,000円/h（常設BS完備）', c: 'ヘビー1室＋物販：月673,200円（固定費89.2%回収）', col: '#a855f7' }
+        { x: 16, w: 354, t: '🧑‍🎓 ライト層・持込層（昼〜夕方中心）', s: '持込600円/h・貸出1,000円/h（深夜実質300円/h〜）', c: 'ライト2室売上：月583,200円（平均900円/h）', col: '#0284c7' },
+        { x: 390, w: 354, t: '💃 ヘビー層・配信者層（夜間・深夜・休日）', s: '持込1,200円/h・フル貸出2,000円/h（常設BS完備）', c: 'ヘビー1室＋物販：月673,200円（固定費89.2%回収）', col: '#7c3aed' }
       ];
       botBoxes.forEach((b) => {
-        ctx.fillStyle = '#0f172a';
+        ctx.fillStyle = '#f8fafc';
         ctx.strokeStyle = b.col;
         ctx.lineWidth = 2;
         roundRect(ctx, b.x, 334, b.w, 120, 10);
@@ -557,10 +562,10 @@
         ctx.fillStyle = b.col;
         ctx.font = 'bold 15px sans-serif';
         ctx.fillText(b.t, b.x + 14, 366);
-        ctx.fillStyle = '#e2e8f0';
+        ctx.fillStyle = '#334155';
         ctx.font = '13px sans-serif';
         ctx.fillText(b.s, b.x + 14, 396);
-        ctx.fillStyle = '#34d399';
+        ctx.fillStyle = '#047857';
         ctx.font = 'bold 13px sans-serif';
         ctx.fillText(b.c, b.x + 14, 428);
       });
@@ -586,17 +591,17 @@
         const bh = Math.max(10, (d.v / 18700) * maxH);
         const y = baseLine - bh;
 
-        ctx.fillStyle = i === 5 ? '#38bdf8' : '#3b82f6';
+        ctx.fillStyle = i === 5 ? '#0284c7' : '#2563eb';
         roundRect(ctx, x, y, 42, bh, 5);
         ctx.fill();
 
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 11px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(d.v >= 10000 ? `${(d.v / 10000).toFixed(2)}兆` : `${d.v}億`, x + 21, y - 6);
 
-        ctx.fillStyle = '#94a3b8';
-        ctx.font = '11px sans-serif';
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 11px sans-serif';
         ctx.fillText(d.y, x + 21, baseLine + 18);
       });
       ctx.textAlign = 'left';
@@ -618,9 +623,9 @@
       groups.forEach((g, i) => {
         const gx = 35 + i * 165;
         const bars = [
-          { val: g.rev, col: '#3b82f6', lbl: '売上' },
-          { val: g.exp, col: '#ef4444', lbl: '費用' },
-          { val: g.prof, col: '#10b981', lbl: '利益' }
+          { val: g.rev, col: '#2563eb', lbl: '売上' },
+          { val: g.exp, col: '#dc2626', lbl: '費用' },
+          { val: g.prof, col: '#059669', lbl: '利益' }
         ];
         bars.forEach((b, bi) => {
           const bx = gx + bi * 38;
@@ -630,12 +635,12 @@
           roundRect(ctx, bx, by, 30, bh, 4);
           ctx.fill();
 
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = '#0f172a';
           ctx.font = 'bold 11px sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText(`${b.val}`, bx + 15, by - 5);
         });
-        ctx.fillStyle = '#e2e8f0';
+        ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 12px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(g.name, gx + 53, baseLine + 20);
@@ -661,24 +666,24 @@
       phases.forEach((ph, i) => {
         const x = 28 + i * 98;
         const y = baseLine - ph.h;
-        ctx.fillStyle = i >= 3 ? '#38bdf8' : '#2563eb';
+        ctx.fillStyle = i >= 3 ? '#0284c7' : '#2563eb';
         roundRect(ctx, x, y, 56, ph.h, 6);
         ctx.fill();
 
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#0f172a';
         ctx.font = 'bold 12px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(`${ph.stores}拠点`, x + 28, y - 22);
-        ctx.fillStyle = '#34d399';
+        ctx.fillStyle = '#059669';
         ctx.fillText(ph.rev, x + 28, y - 6);
 
-        ctx.fillStyle = '#cbd5e1';
-        ctx.font = '11px sans-serif';
+        ctx.fillStyle = '#334155';
+        ctx.font = 'bold 11px sans-serif';
         ctx.fillText(ph.p, x + 28, baseLine + 20);
         pts.push({ x: x + 28, y: y + 10 });
       });
 
-      ctx.strokeStyle = '#f59e0b';
+      ctx.strokeStyle = '#d97706';
       ctx.lineWidth = 3;
       ctx.beginPath();
       pts.forEach((pt, idx) => {
@@ -697,6 +702,22 @@
     if (e.ctrlKey || e.altKey || e.metaKey) return;
 
     const key = e.key;
+
+    // プレゼン画面遷移前のスタンバイ画面が表示されている場合
+    if (isPreDeckVisible()) {
+      if (key === 'Enter' || key === ' ' || key === 'ArrowRight' || key === 'ArrowDown') {
+        e.preventDefault();
+        closePreDeckScreen();
+        showSlide(0);
+        return;
+      }
+      if (key === 'f' || key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+        showSlide(0);
+        return;
+      }
+    }
 
     if (key === 'ArrowRight' || key === 'ArrowDown' || key === ' ' || key === 'Enter' || key === 'PageDown') {
       e.preventDefault();
@@ -729,14 +750,6 @@
     } else if (key === 'x' || key === 'X' || key === 'd' || key === 'D') {
       e.preventDefault();
       exportToPPTX();
-    } else if (key === 'h' || key === 'H' || key === '?') {
-      e.preventDefault();
-      toggleShortcutHelp();
-    } else if (key === 'Escape') {
-      if (overlay && !overlay.classList.contains('hidden')) {
-        e.preventDefault();
-        toggleShortcutHelp();
-      }
     } else if (key === 'i' || key === 'I') {
       e.preventDefault();
       window.location.href = 'index.html';
@@ -762,3 +775,15 @@
     }
   });
 })();
+
+
+  function isPreDeckVisible() {
+    return preDeckScreen && !preDeckScreen.classList.contains('hidden');
+  }
+
+
+  function closePreDeckScreen() {
+    if (preDeckScreen) {
+      preDeckScreen.classList.add('hidden');
+    }
+  }
